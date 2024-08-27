@@ -18,19 +18,31 @@ ecommerce-app/
 │   ├── assets/
 │   │   ├── images/
 │   │   └── fonts/
+│   │   └── styles/
+│   │       ├── main.css
+│   │       └── variables.css
 │   ├── components/
-│   │   ├── Button/
+│   │   ├── common/
 │   │   │   ├── Button.jsx
-│   │   │   └── Button.module.css
-│   │   ├── ProductCard/
+│   │   │   ├── Loader.jsx
+│   │   │   └── Modal.jsx
+│   │   ├── layout/
+│   │   │   ├── Header.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   └── Navbar.jsx
+│   │   ├── product/
 │   │   │   ├── ProductCard.jsx
-│   │   │   └── ProductCard.module.css
-│   │   ├── Navbar/
-│   │   │   ├── Navbar.jsx
-│   │   │   └── Navbar.module.css
-│   │   └── Footer/
-│   │       ├── Footer.jsx
-│   │       └── Footer.module.css
+│   │   │   ├── ProductList.jsx
+│   │   │   └── ProductDetails.jsx
+│   │   ├── cart/
+│   │   │   ├── CartItem.jsx
+│   │   │   ├── CartList.jsx
+│   │   │   └── CartSummary.jsx
+│   │   └── user/
+│   │       ├── UserProfile.jsx
+│   │       ├── LoginForm.jsx
+│   │       └── RegisterForm.jsx
 │   ├── contexts/
 │   │   ├── CartContext.jsx
 │   │   └── AuthContext.jsx
@@ -43,23 +55,23 @@ ecommerce-app/
 │   │   └── AuthLayout.jsx
 │   ├── pages/
 │   │   ├── Home/
-│   │   │   ├── Home.jsx
-│   │   │   └── Home.module.css
+│   │   │   ├── HomePage.jsx
+│   │   │   └── HomePage.module.css
 │   │   ├── Product/
-│   │   │   ├── Product.jsx
-│   │   │   └── Product.module.css
+│   │   │   ├── ProductPage.jsx
+│   │   │   └── ProductPage.module.css
 │   │   ├── Cart/
-│   │   │   ├── Cart.jsx
-│   │   │   └── Cart.module.css
+│   │   │   ├── CartPage.jsx
+│   │   │   └── CartPage.module.css
 │   │   ├── Checkout/
-│   │   │   ├── Checkout.jsx
-│   │   │   └── Checkout.module.css
+│   │   │   ├── CheckoutPage.jsx
+│   │   │   └── CheckoutPage.module.css
 │   │   ├── Login/
-│   │   │   ├── Login.jsx
-│   │   │   └── Login.module.css
+│   │   │   ├── LoginPage.jsx
+│   │   │   └── LoginPage.module.css
 │   │   └── Register/
-│   │       ├── Register.jsx
-│   │       └── Register.module.css
+│   │       ├── RegisterPage.jsx
+│   │       └── RegisterPage.module.css
 │   ├── services/
 │   │   ├── authService.js
 │   │   ├── productService.js
