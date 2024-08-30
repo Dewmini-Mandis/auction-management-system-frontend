@@ -27,12 +27,12 @@ function Header() {
                     <TopBarIcons imgsrc={cart} alt="Cart" linkurl="/cart" />
                     <TopBarIcons imgsrc={wishlist} alt="Watchlist" linkurl="/wishlist" />
                     <TopBarIcons imgsrc={notification} alt="Notification" linkurl="/notification" />
-                    
-                    <MobileViewIcons className='w-7 h-7 xxs:w-9 xss:h-9' imgsrc={menu} alt="Menu" linkurl="/menu"/>
-        
-                    
-                </div>
-                
+
+                    <MobileViewIcons className='w-7 h-7 xxs:w-9 xss:h-9' imgsrc={menu} alt="Menu" linkurl="/menu" />
+
+
+                </div>
+
             </div>
             <div className='grid w-full grid-cols-3 row-span-2 row-start-1 md:row-start-2 md:grid-cols-4 h-fit xl:grid-cols-7 md:border-y md:border-solid md:border-gray-400'>
                 <div className='col-start-1 my-1 md:my-3 ms-2 '>
