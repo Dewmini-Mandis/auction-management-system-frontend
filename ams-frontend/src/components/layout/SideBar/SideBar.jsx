@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import expandArrow from '../../../../src/assets/images/expandArrow.png';
 import contractArrow from '../../../../src/assets/images/contractArrow.png';
 import logo from '../../../assets/images/logo.png';
-import SideBarLink from '../../SideBar/SideBarLink';
 function SideBar() {
     const [openMenu, setOpenMenu] = useState({});
 
