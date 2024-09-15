@@ -1,6 +1,6 @@
 import React from 'react'
 import SideBar from '../../components/layout/SideBar/SideBar';
-import HeaderSeller from '../../components/HeaderSeller/HeaderSeller';
+import HeaderSeller from '../../components/layout/HeaderSeller/HeaderSeller';
 function ProductList() {
   return (
     <div>
