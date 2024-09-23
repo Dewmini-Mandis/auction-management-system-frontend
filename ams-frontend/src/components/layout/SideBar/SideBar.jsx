@@ -13,8 +13,26 @@ function SideBar({ isSidebarVisible , onBreadcrumbChange}) {
       setOpenMenu((prevOpenMenu) => {
         const isCurrentlyOpen = prevOpenMenu[menuName];
         // Reset breadcrumb if closing the "products" menu
-        if (menuName === 'products' && isCurrentlyOpen) {
-            handleBreadcrumbChange('Lansuwa > '); // Reset breadcrumb
+        if (isCurrentlyOpen) {
+          switch (menuName) {
+              case 'products':
+                  handleBreadcrumbChange('Lansuwa > ');
+                  break;
+              case 'auctions':
+                  handleBreadcrumbChange('Lansuwa > ');
+                  break;
+              case 'notifications':
+                  handleBreadcrumbChange('Lansuwa > ');
+                  break;
+              case 'categories':
+                  handleBreadcrumbChange('Lansuwa > ');
+                  break;
+              case 'labels':
+                  handleBreadcrumbChange('Lansuwa > ');
+                  break;
+              default:
+                  break;
+          }
         }
         return {
             ...prevOpenMenu,
