@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Import your components
 import HomePage from './pages/Home/HomePage';
 import NotFound from './components/NotFound/NotFound';
-
+import ProductList from './pages/Product/ProductList/ProductList';
 
 const AppRoutes = () => {
   return (
@@ -13,6 +13,7 @@ const AppRoutes = () => {
         
         {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/productlist" element={<ProductList />} />
 
 
         {/* Auth Routes */}
