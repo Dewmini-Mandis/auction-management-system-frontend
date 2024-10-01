@@ -34,9 +34,9 @@ function Header() {
                 </div>
 
             </div>
-            <div className='grid w-full grid-cols-3 row-span-2 row-start-1 md:row-start-2 md:grid-cols-4 h-fit xl:grid-cols-7 md:border-y md:border-solid md:border-gray-400'>
-                <div className='col-start-1 my-1 md:my-3 ms-2 '>
-                    <img className='w-[135px] h-[35px] lg:w-[150px] lg:h-[45px] xl:w-[180px] xl:h-[55px]' src={logo} alt="Logo" />
+            <div className='grid w-full grid-cols-3 row-span-2 row-start-1 md:row-start-2 md:grid-cols-4 h-fit xl:grid-cols-7 md:border-y md:border-solid md:border-gray-300'>
+                <div className='col-start-1 my-1 md:my-3 lg:my-1 ms-2 '>
+                    <img className='w-[125px] h-[30px] lg:w-[150px] lg:h-[40px] xl:w-[170px] xl:h-[45px]' src={logo} alt="Logo" />
                 </div>
                 <div className='flex items-center col-span-2 col-start-2 row-start-2 md:row-start-1 xl:col-start-3 xl:col-span-3'>
                     <input type="text" className=" my-3 border-solid border rounded-3xl md:rounded-r-none md:rounded-l-xl lg:rounded-l-2xl h-[21px] w-[250px] xs:h-[23px] xs:w-[400px] md:w-[500px] lg:h-[30px] md:h-[25px] xl:h-[35px] xl:w-[1000px] form-control search-input border-[#8A3CCD] focus:opacity-60 focus:ring focus:ring-violet-300 focus:outline-none placeholder:text-[9px] xs:placeholder:text-[10px] md:placeholder:text-[12px] lg:placeholder:text-[14px]" placeholder="   Search any" />
@@ -46,7 +46,7 @@ function Header() {
                     </button>
                 </div>
                 <div className='content-center justify-center col-start-1 md:col-start-4 xl:col-start-7'>
-                    <button type='button' className='flex rounded-2xl w-fit h-fit bg-gradient-to-r from-[#9e88f7] to-[#8317E1] text-white text-[8px] xs:text-[10px] md:text-[12px] xl:text-[15px] font-semibold lg:my-3 px-2 xss:px-3 md:px-3 py-1 xs:py-2 ms-3 xss:ms-5 md:ms-12 lg:ms-14 lg:mr-1 xl:ms-1 2xl:ms-20'>Bid by Category</button>
+                    <button type='button' className='flex rounded-2xl w-fit h-fit bg-gradient-to-r from-[#9e88f7] to-[#8317E1] text-white text-[8px] xs:text-[10px] md:text-[12px] xl:text-[15px] font-semibold lg:my-3 px-2 xss:px-3 md:px-3 py-1 xs:py-2 ms-3 xss:ms-5 md:ms-12 lg:ms-14 lg:mr-1 xl:ms-1 2xl:ms-36'>Bid by Category</button>
                 </div>
 
             </div>
