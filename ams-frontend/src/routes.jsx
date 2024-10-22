@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home/HomePage';
 import NotFound from './components/NotFound/NotFound';
 import ProductList from './pages/Product/ProductList/ProductList';
-import AddBid from './components/layout/Bid/AddBid';
+import MyBids from './pages/MyBids/MyBids';
 import WishList from './pages/Wishlist/WishList';
 
 const AppRoutes = () => {
@@ -17,6 +17,7 @@ const AppRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/productlist" element={<ProductList />} />
         <Route path="/wishlist" element={<WishList />} />
+        <Route path="/mybids" element={<MyBids />} />
 
 
         {/* Auth Routes */}
