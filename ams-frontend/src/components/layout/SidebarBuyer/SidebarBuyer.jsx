@@ -21,7 +21,7 @@ function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
     };
 
     return (
-        <div className={`2xl:pl-6 w-1/3 md:w-1/6 h-full bg-[#FDFAFF] text-gray-600 shadow-md md:block ${isSidebarVisible ? 'block' : 'hidden'}`}>
+        <div className={`2xl:pl-6 w-1/3 md:w-1/6 h-full bg-[#FDFAFF] text-gray-600 border-r border-solid border-neutral-200 shadow-md md:block ${isSidebarVisible ? 'block' : 'hidden'}`}>
             <ul className="">
                 <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'myaccount' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
                     <span className='text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm'>

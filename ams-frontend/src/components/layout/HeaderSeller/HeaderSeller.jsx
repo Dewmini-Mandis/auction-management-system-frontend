@@ -11,7 +11,7 @@ function HeaderSeller({isSidebarVisible , toggleSidebarVisibility , breadcrumb})
         <button type='button' className={`block col-start-1 row-start-1 md:hidden ${isSidebarVisible ? 'xxs:-ms-4' : 'ms-0'} ${isSidebarVisible ? '-ms-3' : 'ms-0'}`}>
             <img className='w-4 h-4 xxs:w-5 xxs:h-5' src={xbox} alt="Xbox"  onClick={toggleSidebarVisibility} />
       </button>
-      <div className={`row-start-1 lg:col-span-2 col-start-1 font-medium md:text-[12px] xl:text-[15px] xxs:text-[10px] text-[8px] w-fit 2xl:ms-12 my-0 lg:mb-0 ms-7 md:ms-0 ${isSidebarVisible ? 'hidden' : 'block'}`}>
+      <div className={`row-start-1 lg:col-span-2 col-start-1 font-medium md:text-[12px] xl:text-[15px] xxs:text-[10px] text-[8px] w-fit 2xl:ms-12 my-0 lg:mb-0 ms-7 md:ms-0 text-gray-600 ${isSidebarVisible ? 'hidden' : 'block'}`}>
       {breadcrumb}
       </div>
       <div className='flex col-start-2 row-start-1 lg:col-start-3 xl:col-span-2 xl:col-start-4 d-flex'>

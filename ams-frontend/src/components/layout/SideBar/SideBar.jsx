@@ -52,7 +52,7 @@ function SideBar({ isSidebarVisible , onBreadcrumbChange}) {
         <img src={logo} alt="logo" className='h-5 m-1 mt-2 w-25 xss:h-6 xss:w-30 md:m-3 lg:m-4 md:w-35 md:h-7 xl:h-10 xl:w-55' />
     </div>
   <ul className="p-3 xss:p-4 lg:px-6 xl:px-8 ">
-    <li className="py-2 border-solid border-y border-neutral-200 ">
+    <li className="py-2 text-gray-600 border-solid border-y border-neutral-200 ">
     <div
             onClick={() => {
               toggleMenu('products');
@@ -76,7 +76,7 @@ function SideBar({ isSidebarVisible , onBreadcrumbChange}) {
         </ul>
       )}
     </li>
-    <li className="py-2 border-solid border-y border-neutral-200">
+    <li className="py-2 text-gray-600 border-b border-solid border-neutral-200">
   <div
     onClick={() => {
       toggleMenu('auctions')
@@ -100,7 +100,7 @@ function SideBar({ isSidebarVisible , onBreadcrumbChange}) {
     </ul>
   )}
 </li>
-<li className="py-2 border-solid border-y border-neutral-200">
+<li className="py-2 text-gray-600 border-b border-solid border-neutral-200">
   <div
     onClick={() => {
       toggleMenu('notifications')
@@ -124,7 +124,7 @@ function SideBar({ isSidebarVisible , onBreadcrumbChange}) {
     </ul>
   )}
 </li>
-<li className="py-2 border-solid border-y border-neutral-200">
+<li className="py-2 text-gray-600 border-b border-solid border-neutral-200">
   <div
     onClick={() => {
       toggleMenu('categories')
@@ -148,7 +148,7 @@ function SideBar({ isSidebarVisible , onBreadcrumbChange}) {
     </ul>
   )}
 </li>
-<li className="py-2 border-solid border-y border-neutral-200">
+<li className="py-2 text-gray-600 border-b border-solid border-neutral-200">
   <div
     onClick={() => {
       toggleMenu('labels')
@@ -172,7 +172,7 @@ function SideBar({ isSidebarVisible , onBreadcrumbChange}) {
     </ul>
   )}
 </li>
-<li className="py-2 border-solid border-y border-neutral-200">
+<li className="py-2 border-b border-solid border-neutral-200">
  
     <span className='text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm text-gray-600 '><Link to='/bids' onClick={() => handleBreadcrumbChange('Lansuwa > Bids ')}>Bids</Link></span>
     
