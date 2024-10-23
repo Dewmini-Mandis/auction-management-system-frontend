@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import expandArrow from '../../../../src/assets/images/expandArrow.png';
 import contractArrow from '../../../../src/assets/images/contractArrow.png';
-import logo from '../../../assets/images/logo.png';
 
 function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
     const [openMenu, setOpenMenu] = useState({});
@@ -22,7 +21,7 @@ function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
     };
 
     return (
-        <div className={`2xl:pl-6 w-1/3 md:w-1/6 h-full bg-[#FDFAFF] shadow-md md:block ${isSidebarVisible ? 'block' : 'hidden'}`}>
+        <div className={`2xl:pl-6 w-1/3 md:w-1/6 h-full bg-[#FDFAFF] text-gray-600 shadow-md md:block ${isSidebarVisible ? 'block' : 'hidden'}`}>
             <ul className="">
                 <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'myaccount' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
                     <span className='text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm'>
@@ -74,12 +73,12 @@ function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
                         </Link>
                     </span>
                 </li>
-                <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'sellers' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
+                <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'sellers' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`} >
                     <div
                         onClick={() => toggleMenu('sellers')}
                         className="flex justify-between cursor-pointer"
                     >
-                        <span className={`text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm ${openMenu['sellers'] ? 'font-medium , text-[#480C7B]' : ''}`}>
+                        <span className={`text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm ${openMenu['sellers'] ? 'font-medium , text-[#480C7B]' : ''} ` }  >
                             Sellers
                         </span>
                         <span>
