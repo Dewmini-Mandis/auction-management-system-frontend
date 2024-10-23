@@ -46,7 +46,7 @@ function Header() {
                     </button>
                 </div>
                 <div className='content-center justify-center col-start-1 md:col-start-4 xl:col-start-7'>
-                    <button type='button' className='flex rounded-xl w-fit h-fit bg-gradient-to-r from-[#9e88f7] to-[#8317E1] text-white text-[6px] xxs:text-[8px]  md:text-[10px] xl:text-[12px] font-medium lg:my-2 px-3 xss:px-4 xs:px-6 md:px-6 lg:px-10 py-1 ms-3 xss:ms-5 md:ms-12 lg:ms-14 lg:mr-1 xl:ms-1 2xl:ms-36'>Bid by Category</button>
+                    <button type='button' className='flex rounded-xl w-fit h-fit bg-gradient-to-r from-[#9e88f7] to-[#8317E1] text-white text-[6px] xxs:text-[8px]  md:text-[10px] xl:text-[12px] font-medium lg:my-2 px-3 xss:px-4 xs:px-6 md:px-6 lg:px-10 py-2 ms-3 xss:ms-5 md:ms-12 lg:ms-14 lg:mr-1 xl:ms-1 2xl:ms-36'>Bid by Category</button>
                 </div>
 
             </div>

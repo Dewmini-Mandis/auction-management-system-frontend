@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SidebarBuyer from '../../components/layout/SidebarBuyer/SidebarBuyer';
 import Header from '../../components/layout/Header/Header';
 import IncreaseBid from '../../components/layout/Bid/IncreaseBid';
+import Breadcrumb from '../../components/layout/Breadcrumb/Breadcrumb';
 
 function MyBids() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);    // State for sidebar visibility
@@ -35,8 +36,9 @@ function MyBids() {
         <Header
           toggleSidebarVisibility={toggleSidebarVisibility}
           isSidebarVisible={isSidebarVisible}
-          breadcrumb={breadcrumb}
         />
+
+        <Breadcrumb breadcrumb={breadcrumb} />
 
         {/* Flex container for Sidebar and Content */}
         <div className="flex w-full h-full">
