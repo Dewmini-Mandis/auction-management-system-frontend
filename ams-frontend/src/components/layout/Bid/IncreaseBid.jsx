@@ -32,12 +32,11 @@ const IncreaseBid = ({ onClose }) => {
           <h2 className="mb-2 text-[12px] sm:text-[15px] font-medium">
             Authentic Louis Vuitton Monogram Mini Josephine PM Pink M92216 Handbag NS080276
           </h2>
-          <p className='mb-2 text-[10px] sm:text-[13px]'>Condition : Brand New</p>
         </div>
 
         <p className='my-2 text-[10px] sm:text-[13px]'>12 bids | Time left : <span className='text-red-600'>6h 4m 2s</span></p>
-        <p className='mb-2 text-[10px] sm:text-[13px]'>Current bid : <span className='font-bold text-[11px] sm:text-[14px]'>Rs. 25000.00</span></p>
-        <p className='mb-2 text-[10px] sm:text-[13px]'>Shipping : free shipping</p>
+        <p className='mb-2 text-[10px] sm:text-[13px]'>Current highest bid : <span className='font-bold text-[11px] sm:text-[14px]'>Rs. 25000.00</span></p>
+        <p className='mb-2 text-[10px] sm:text-[13px]'>Shipping : <span className='font-bold text-[11px] sm:text-[14px]'>Free shipping</span></p>
 
         <div className='p-2 my-1 rounded-lg bg-[#C8C8C8]'>
 
