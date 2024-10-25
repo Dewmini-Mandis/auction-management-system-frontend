@@ -11,7 +11,9 @@ import WishList from './pages/Wishlist/WishList';
 
 import SignInPage from './pages/Auth/SignIn/SignInPage';
 import SignUpPage from './pages/Auth/SignUp/SignUpPage';
-
+import EmailVerification from './pages/Auth/EmailVerification/EmailVerification';
+import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
+import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 const AppRoutes = () => {
   return (
@@ -28,6 +30,11 @@ const AppRoutes = () => {
         {/* Auth Routes */}
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/email-verification" element={<EmailVerification />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
+        
 
         {/* Protected Routes */}
 

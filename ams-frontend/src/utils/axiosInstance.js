@@ -21,7 +21,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if ((error.response && error.response.status === 401) || (error.response && error.response.status === 400)) {
+    if (error.response && error.response.status === 401) {
       // Clear the token and store the intended URL
       localStorage.removeItem('token');
       const currentPath = window.location.pathname;

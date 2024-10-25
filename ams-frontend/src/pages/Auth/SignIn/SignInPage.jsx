@@ -91,7 +91,7 @@ const SignInPage = () => {
                         </div>
 
                         <div className="pt-5">
-                            <a href="/forgotpassword" className="text-[#4B5563]">Forgot Password?</a>
+                            <a href="/forgot-password" className="text-[#4B5563]">Forgot Password?</a>
                         </div>
 
                         <div className="pt-5">
