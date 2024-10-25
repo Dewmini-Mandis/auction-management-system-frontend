@@ -9,6 +9,8 @@ import ProductList from './pages/Product/ProductList/ProductList';
 import MyBids from './pages/MyBids/MyBids';
 import WishList from './pages/Wishlist/WishList';
 
+import SignInPage from './pages/Auth/SignIn/SignInPage';
+
 
 const AppRoutes = () => {
   return (
