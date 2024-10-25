@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Import your components
 import HomePage from './pages/Home/HomePage';
 import NotFound from './components/NotFound/NotFound';
-import SignIn from './pages/Auth/SignIn/SignInPage';
+import SignInPage from './pages/Auth/SignIn/SignInPage';
 
 
 const AppRoutes = () => {
@@ -17,7 +17,7 @@ const AppRoutes = () => {
 
 
         {/* Auth Routes */}
-        <Route path="/sign" element={<SignIn />} />
+        <Route path="/signin" element={<SignInPage />} />
 
 
         {/* Protected Routes */}
