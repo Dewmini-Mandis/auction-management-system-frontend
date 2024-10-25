@@ -3,6 +3,7 @@ import SidebarBuyer from '../../components/layout/SidebarBuyer/SidebarBuyer';
 import Header from '../../components/layout/Header/Header';
 import IncreaseBid from '../../components/layout/Bid/IncreaseBid';
 import Breadcrumb from '../../components/layout/Breadcrumb/Breadcrumb';
+import deleteicon from '../../assets/images/deleteicon.png';
 import axios from 'axios'
 
 function MyBids() {
@@ -35,9 +36,9 @@ function MyBids() {
 
   useEffect(() => {
     // Function to fetch bids data from the backend
-    axios.get('https://localhost:7010/api/MyBids/GetMyBids', {
+    axios.get('https://localhost:7010/api/Bid/GetMyBids', {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXdtaW5pbmF2b2R5YTIwMDJAZ21haWwuY29tIiwiVXNlcklkIjoiMiIsIlJvbGUiOiJidXllciIsImV4cCI6MTcyOTgzOTg4NSwiaXNzIjoiWW91ckFwcCIsImF1ZCI6IllvdXJBcHBVc2VycyJ9.62i7ori6uMWLOe8rfl3Ip4E4NaXkIC3Qp6kHkj48GVc` // Correct token retrieval ${localStorage.getItem('token')}
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXdtaW5pbmF2b2R5YTIwMDJAZ21haWwuY29tIiwiVXNlcklkIjoiMiIsIlJvbGUiOiJidXllciIsImV4cCI6MTcyOTg3NjAyNywiaXNzIjoiWW91ckFwcCIsImF1ZCI6IllvdXJBcHBVc2VycyJ9.Jj48HbKhadhRdwUMhtkZ5lqubcnKzSnHjCgQ6tYV4aU` // Correct token retrieval ${localStorage.getItem('token')}
       }
     })
       .then(response => {
@@ -55,6 +56,26 @@ function MyBids() {
       });
     // Call the function when the component is loaded
   }, []);
+
+  const handleDeleteBid = (bidId) => {
+    // Show a confirmation dialog before deleting
+    const confirmDelete = window.confirm("Are you sure you want to delete this bid?");
+    
+    if (confirmDelete) {
+      axios.delete(`https://localhost:7010/api/Bid/DeleteBid/${bidId}`, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXdtaW5pbmF2b2R5YTIwMDJAZ21haWwuY29tIiwiVXNlcklkIjoiMiIsIlJvbGUiOiJidXllciIsImV4cCI6MTcyOTg3NjAyNywiaXNzIjoiWW91ckFwcCIsImF1ZCI6IllvdXJBcHBVc2VycyJ9.Jj48HbKhadhRdwUMhtkZ5lqubcnKzSnHjCgQ6tYV4aU`
+        }
+      })
+      .then(response => {
+        setBids(bids.filter(bid => bid.bidId !== bidId));
+        console.log("Bid deleted successfully:", response.data);
+      })
+      .catch(error => {
+        console.error("Error deleting bid:", error.message);
+      });
+    }
+  };
   
   return (
     <div className="w-full h-screen parent-container">
@@ -89,8 +110,8 @@ function MyBids() {
       <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300">My Current Bid</th>
       <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300">Current Highest Bid</th>
       <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300">Time Left</th>
-      <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300">Action</th>
-
+      <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300"></th>
+      <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300"></th>
     </tr>
   </thead>
   
@@ -106,7 +127,14 @@ function MyBids() {
             className="px-4 py-1 text-black font-medium rounded hover:bg-slate-200 hover:border-slate-200 text-[12px] border border-slate-800"
             onClick={handleOpenIncreaseModal}
           >
-            Increase Max Bid
+            Increase Bid
+          </button>
+        </td>
+        <td className="px-4 py-2 border border-slate-300">
+          <button
+            className="px-3 py-1 hover:opacity-50" title="Delete"
+            onClick={() => handleDeleteBid(bid.bidId)}          >
+             <img className="w-5 h-5" src={deleteicon} alt="delete" />
           </button>
         </td>
       </tr>
