@@ -10,6 +10,7 @@ import MyBids from './pages/MyBids/MyBids';
 import WishList from './pages/Wishlist/WishList';
 
 import SignInPage from './pages/Auth/SignIn/SignInPage';
+import SignUpPage from './pages/Auth/SignUp/SignUpPage';
 
 
 const AppRoutes = () => {
@@ -26,7 +27,7 @@ const AppRoutes = () => {
 
         {/* Auth Routes */}
         <Route path="/signin" element={<SignInPage />} />
-
+        <Route path="/signup" element={<SignUpPage />} />
 
         {/* Protected Routes */}
 

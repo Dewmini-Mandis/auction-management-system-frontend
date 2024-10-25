@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-
 import logo from "../../../assets/images/logos/logo.png";
 import google from "../../../assets/images/logos/google.png";
 import facebook from "../../../assets/images/logos/facebook.png";
 import microsoft from "../../../assets/images/logos/microsoft.png";
-
+import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-
 import axiosInstance from '../../../utils/axiosInstance';
+import Loading from '../../../components/Loading/Loading';
 
 
 const SignInPage = () => {
@@ -16,12 +15,21 @@ const SignInPage = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    // useState for loading
+    const [loading, setLoading] = useState(false);
+
     const handleSignin = async (event) => {
         event.preventDefault();
-    
+
+        setLoading(true);
+
         try {
           const response = await axiosInstance.post('/api/Auth/Login', { email, password });
           localStorage.setItem('token', response.data.token);
+
+          // Show a success toast
+          toast.success('Login successful!');
+
           // Check if there's an intended URL
           const intendedUrl = localStorage.getItem('intendedUrl');
           if (intendedUrl) {
@@ -32,14 +40,27 @@ const SignInPage = () => {
             // Default redirection if no intended URL exists
             navigate('/');
           }
+
+          setLoading(false);
+
         } catch (error) {
           console.error("Login failed:", error);
+          // Show an error toast
+          toast.error('Login failed!');
+          setLoading(false);
         }
+
       };
 
 
     return (
-        <div className="flex items-center justify-center h-screen bg-[#F5F5F5]">
+        <React.Fragment>
+
+          {loading && (
+            <Loading />
+          )}
+
+          <div className="flex items-center justify-center h-screen bg-[#F5F5F5]">
             <div className="bg-[#FDFAFF] grid lg:grid-cols-2 gap-10 p-10 border-[1px] border-[#D1C7D9] ">
                 <div className="">
                     <img src={logo} alt="svad" />
@@ -68,9 +89,18 @@ const SignInPage = () => {
                         <div className="pt-5">
                             <button className="w-[350px] p-2 bg-[#4B5563] text-white rounded-[10px]" onClick={handleSignin}>Sign In</button>
                         </div>
+
+                        <div className="pt-5">
+                            <a href="/forgotpassword" className="text-[#4B5563]">Forgot Password?</a>
+                        </div>
+
+                        <div className="pt-5">
+                            <p>Don't have an account? <a href="/signup" className="text-[#4B5563]">Sign Up</a></p>
+                        </div>                        
                 </div>
             </div>
         </div>
+    </React.Fragment>
     );
 };
 
