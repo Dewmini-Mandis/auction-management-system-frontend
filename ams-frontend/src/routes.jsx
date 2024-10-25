@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Import your components
 import HomePage from './pages/Home/HomePage';
 import NotFound from './components/NotFound/NotFound';
-import SignInPage from './pages/Auth/SignIn/SignInPage';
+
+import ProductList from './pages/Product/ProductList/ProductList';
+import MyBids from './pages/MyBids/MyBids';
+import WishList from './pages/Wishlist/WishList';
 
 
 const AppRoutes = () => {
@@ -14,6 +17,9 @@ const AppRoutes = () => {
         
         {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/productlist" element={<ProductList />} />
+        <Route path="/wishlist" element={<WishList />} />
+        <Route path="/mybids" element={<MyBids />} />
 
 
         {/* Auth Routes */}

@@ -6,15 +6,18 @@ export default {
   ],
   theme: {
     extend: {
-      colors: { 
-        backgroundLitePurple: '#EDD8FF',
-      },
+
+      screens: {
+        'xs': '425px',
+        'xxs': '375px',
     },
-    container: {
-      padding: '1rem',
-      center: true,
-    },
+    margin: {
+      '85px': '85px',
+      '70px': '70px',
   },
-  plugins: [],
+  },
+},
+plugins: [],
+
 }
 
