@@ -6,12 +6,18 @@ export default {
   ],
   theme: {
     extend: {
+
       screens: {
         'xs': '425px',
         'xxs': '375px',
     },
+    margin: {
+      '85px': '85px',
+      '70px': '70px',
   },
-  plugins: [],
-}
+  },
+},
+plugins: [],
+
 }
 

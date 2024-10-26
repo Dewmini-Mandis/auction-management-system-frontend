@@ -7,6 +7,16 @@ import NotFound from './components/NotFound/NotFound';
 import Notification from './pages/Notification/Notification';
 import Slidebar from './pages/Slidebar/Slidebar';
 
+import ProductList from './pages/Product/ProductList/ProductList';
+import MyBids from './pages/MyBids/MyBids';
+import WishList from './pages/Wishlist/WishList';
+import Product from './pages/Product/ProductList/Product';
+
+import SignInPage from './pages/Auth/SignIn/SignInPage';
+import SignUpPage from './pages/Auth/SignUp/SignUpPage';
+import EmailVerification from './pages/Auth/EmailVerification/EmailVerification';
+import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
+import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 const AppRoutes = () => {
   return (
@@ -15,10 +25,19 @@ const AppRoutes = () => {
         
         {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
-
+        <Route path="/productlist" element={<ProductList />} />
+        <Route path="/wishlist" element={<WishList />} />
+        <Route path="/mybids" element={<MyBids />} />
+        <Route path="/product" element={<Product />} />
 
         {/* Auth Routes */}
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/email-verification" element={<EmailVerification />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
+        
 
         {/* Protected Routes */}
 
