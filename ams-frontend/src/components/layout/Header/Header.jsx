@@ -22,7 +22,7 @@ function Header() {
                     <TopBarLinks linktext='Register' linkurl="/register" />
                 </div>
 
-                <div class="flex w-auto h-fit col-start-3 md:ms-2 lg:col-start-4 xl:ms-5 xl:col-start-5 2xl:col-start-6">
+                <div className ="flex w-auto col-start-3 h-fit md:ms-2 lg:col-start-4 xl:ms-5 xl:col-start-5 2xl:col-start-6">
                     <TopBarIcons imgsrc={flag} alt="Ship to" linkurl="/country" />
                     <TopBarIcons imgsrc={cart} alt="Cart" linkurl="/cart" />
                     <TopBarIcons imgsrc={wishlist} alt="Watchlist" linkurl="/wishlist" />
