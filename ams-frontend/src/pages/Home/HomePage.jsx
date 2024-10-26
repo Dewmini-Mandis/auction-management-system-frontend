@@ -230,15 +230,8 @@ const HomePage = () => {
 </div>
 </div>
  
-    return (
-
-        <React.Fragment>
-            <Header />
-            <h1 className='text-5xl text-center pt-80'>Home Page</h1>
-        </React.Fragment>
-    );
-};
-
+      <Footer />
+    </React.Fragment>
+  );
+}
 export default HomePage;
-
-
