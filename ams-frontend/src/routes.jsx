@@ -8,6 +8,7 @@ import NotFound from './components/NotFound/NotFound';
 import ProductList from './pages/Product/ProductList/ProductList';
 import MyBids from './pages/MyBids/MyBids';
 import WishList from './pages/Wishlist/WishList';
+import Product from './pages/Product/ProductList/Product';
 
 import SignInPage from './pages/Auth/SignIn/SignInPage';
 import SignUpPage from './pages/Auth/SignUp/SignUpPage';
@@ -25,7 +26,7 @@ const AppRoutes = () => {
         <Route path="/productlist" element={<ProductList />} />
         <Route path="/wishlist" element={<WishList />} />
         <Route path="/mybids" element={<MyBids />} />
-
+        <Route path="/productlist" element={<Product />} />
 
         {/* Auth Routes */}
         <Route path="/signin" element={<SignInPage />} />
