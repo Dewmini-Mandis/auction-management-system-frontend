@@ -4,13 +4,14 @@ import Header from '../../components/layout/Header/Header';
 import IncreaseBid from '../../components/layout/Bid/IncreaseBid';
 import Breadcrumb from '../../components/layout/Breadcrumb/Breadcrumb';
 import deleteicon from '../../assets/images/deleteicon.png';
-import axios from 'axios'
+import axiosInstance from '../../utils/axiosInstance';
 
 function MyBids() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);    // State for sidebar visibility
   const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');         // State for breadcrumb
   const [isIncreaseModalOpen, setIsIncreaseModalOpen] = useState(false);  // State for modal
   const [bids, setBids] = useState([]);  // State for bids data
+  const [selectedBid, setSelectedBid] = useState(null); // State for selected bid details
 
   // Toggle sidebar visibility
   const toggleSidebarVisibility = () => {
@@ -22,60 +23,48 @@ function MyBids() {
     setBreadcrumb(newBreadcrumb);
   };
 
-  // Open the modal
-  const handleOpenIncreaseModal = () => {
+  // Open Increase Bid modal with selected bid details
+  const handleOpenIncreaseModal = (bid) => {
+    setSelectedBid(bid);  // Set the selected bid details
     setIsIncreaseModalOpen(true);
   };
 
-  // Close the modal
-  const handleCloseIncreaseModal = () => {
-    setIsIncreaseModalOpen(false);
-  };
+  
+
 
 
 
   useEffect(() => {
-    // Function to fetch bids data from the backend
-    axios.get('https://localhost:7010/api/Bid/GetMyBids', {
-      headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXdtaW5pbmF2b2R5YTIwMDJAZ21haWwuY29tIiwiVXNlcklkIjoiMiIsIlJvbGUiOiJidXllciIsImV4cCI6MTcyOTg3NjAyNywiaXNzIjoiWW91ckFwcCIsImF1ZCI6IllvdXJBcHBVc2VycyJ9.Jj48HbKhadhRdwUMhtkZ5lqubcnKzSnHjCgQ6tYV4aU` // Correct token retrieval ${localStorage.getItem('token')}
-      }
-    })
+    axiosInstance.get('/api/Bid/GetMyBids')
       .then(response => {
-        setBids(response.data); // Set the fetched data to state
-        console.log('Fetched bids:', response.data);
+        setBids(response.data);
       })
       .catch(error => {
-        if (error.response && error.response.status === 401) {
-          console.error('Unauthorized! Redirecting to login...');
-          // Redirect to login page or show an error message
-          // window.location.href = '/login'; 
-        } else {
-          console.error('Error fetching bids:', error.message);
-        }
+        console.log(error);
       });
-    // Call the function when the component is loaded
-  }, []);
+  }, []); // Add [] to avoid re-running
+
 
   const handleDeleteBid = (bidId) => {
-    // Show a confirmation dialog before deleting
-    const confirmDelete = window.confirm("Are you sure you want to delete this bid?");
-    
-    if (confirmDelete) {
-      axios.delete(`https://localhost:7010/api/Bid/DeleteBid/${bidId}`, {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXdtaW5pbmF2b2R5YTIwMDJAZ21haWwuY29tIiwiVXNlcklkIjoiMiIsIlJvbGUiOiJidXllciIsImV4cCI6MTcyOTg3NjAyNywiaXNzIjoiWW91ckFwcCIsImF1ZCI6IllvdXJBcHBVc2VycyJ9.Jj48HbKhadhRdwUMhtkZ5lqubcnKzSnHjCgQ6tYV4aU`
-        }
-      })
-      .then(response => {
-        setBids(bids.filter(bid => bid.bidId !== bidId));
-        console.log("Bid deleted successfully:", response.data);
-      })
-      .catch(error => {
-        console.error("Error deleting bid:", error.message);
-      });
-    }
+        // URL - /api/Bid/GetMyBids
+
+            // Show a confirmation dialog before deleting
+            const confirmDelete = window.confirm("Are you sure you want to delete this bid?");
+
+            // fetch data using axios instance
+            axiosInstance
+              .delete(`/api/Bid/DeleteBid/${bidId}`)
+              .then((response) => {
+                setBids(bids.filter(bid => bid.bidId !== bidId));
+              })
+
+
+        // Call the function when the component is loaded
   };
+
+
+  
+  
   
   return (
     <div className="w-full h-screen parent-container">
@@ -125,7 +114,7 @@ function MyBids() {
         <td className="px-6 py-2 border border-slate-300">
           <button
             className="px-4 py-1 text-black font-medium rounded hover:bg-slate-200 hover:border-slate-200 text-[12px] border border-slate-800"
-            onClick={handleOpenIncreaseModal}
+            onClick={() => handleOpenIncreaseModal(bid)}
           >
             Increase Bid
           </button>
@@ -143,7 +132,7 @@ function MyBids() {
 </table>
 
             {/* Increase Bid Modal */}
-            {isIncreaseModalOpen && <IncreaseBid onClose={handleCloseIncreaseModal} />}
+            {isIncreaseModalOpen && <IncreaseBid bid={selectedBid} onClose={() => setIsIncreaseModalOpen(false)} />}
           </div>
         </div>
       </React.Fragment>
