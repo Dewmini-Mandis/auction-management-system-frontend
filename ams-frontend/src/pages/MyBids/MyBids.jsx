@@ -51,16 +51,18 @@ function MyBids() {
             // Show a confirmation dialog before deleting
             const confirmDelete = window.confirm("Are you sure you want to delete this bid?");
 
-            // fetch data using axios instance
-            axiosInstance
-              .delete(`/api/Bid/DeleteBid/${bidId}`)
-              .then((response) => {
-                setBids(bids.filter(bid => bid.bidId !== bidId));
-              })
-
-
-        // Call the function when the component is loaded
-  };
+            if (confirmDelete) {
+              // fetch data using axios instance
+              axiosInstance
+                .delete(`/api/Bid/DeleteBid/${bidId}`)
+                .then((response) => {
+                  setBids(bids.filter(bid => bid.bidId !== bidId));
+                })
+                .catch(error => {
+                  console.error("There was an error deleting the bid:", error);
+                });
+            }
+            };
 
 
   
