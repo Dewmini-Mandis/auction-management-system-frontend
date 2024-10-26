@@ -6,11 +6,14 @@ import Untitled2 from '../../assets/images/Untitled-2.png';
 import Untitled3 from '../../assets/images/Untitled-3.png';
 import Untitled4 from '../../assets/images/Untitled-4.png';
 import Heart from '../../assets/images/Property 1=Variant2.png';
-import Group90 from '../../assets/images/Group 90.png';
-import Group91 from '../../assets/images/Group 91.png';
-import Group92 from '../../assets/images/Group 92.png';
-import Group93 from '../../assets/images/Group 93.png';
-import Group94 from '../../assets/images/Group 94.png';
+import rectangle0 from '../../assets/images/Rectangle 269.png';
+import rectangle1 from '../../assets/images/Rectangle 269 (1).png';
+import rectangle2 from '../../assets/images/Rectangle 269 (2).png';
+import rectangle3 from '../../assets/images/Rectangle 269 (3).png';
+import rectangle4 from '../../assets/images/Rectangle 269 (4).png';
+import Union from '../../assets/images/Union.png';
+import Star4 from '../../assets/images/Star 4.png';
+import Star6 from '../../assets/images/Star 6.png';
 import Ellipse7 from '../../assets/images/Ellipse 7.png';
 import Ellipse8 from '../../assets/images/Ellipse 8.png';
 import Ellipse9 from '../../assets/images/Ellipse 9.png';
@@ -40,6 +43,15 @@ const HomePage = () => {
   const Back = () => {
     setCurrentIndex((prevIndex) => (prevIndex === items.length - 1 ? 0 : prevIndex + 1));
   };
+
+
+  const featuredProducts = [
+    { id: 1, image: rectangle0, title: "Gold Jewellery A 22 KT", price: "50000.48", timeLeft: "8d:4h:28m" },
+    { id: 2, image: rectangle1, title: "Gold Jewellery A 22 KT", price: "50000.48", timeLeft: "8d:4h:28m" },
+    { id: 3, image: rectangle3, title: "Gold Jewellery A 22 KT", price: "50000.48", timeLeft: "8d:4h:28m" },
+    { id: 4, image: rectangle2, title: "Gold Jewellery A 22 KT", price: "50000.48", timeLeft: "8d:4h:28m" },
+    { id: 5, image: rectangle4, title: "Gold Jewellery A 22 KT", price: "50000.48", timeLeft: "8d:4h:28m" }
+  ];
 
   return (
     <React.Fragment>
@@ -95,41 +107,31 @@ const HomePage = () => {
             </div>
 </div>
 <br></br>
-
-<div>
-<div className="flex items-center justify-between min-h-10 container w-fit mx-auto">
-<div className="flex flex-row-reverse ">
-   
-   <a href="#">
-    <img src={Group90} alt="Group 90" className="mx-3">
-    </img>
-    </a>
+<div className="container mx-auto p-4">
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
 
 
-    <a href="#">
-    <img src={Group91} alt="Group 91" className='mx-3'>
-    </img>
-    </a>
-
-    <a href="#">
-    <img src={Group92} alt="Group 92" className='mx-3'>
-    </img>
-    </a>
-
-
-    <a href="#">
-    <img src={Group93} alt="Group 93" className='mx-3'>
-    </img>
-    </a>
-
-    <a href="#">
-    <img src={Group94} alt="Group 94" className='mx-3'>
-    </img>
-    </a>
-
-</div>
-</div>
-</div>
+    {featuredProducts.map((product) => (
+            <div key={product.id} className="bg-white shadow-md rounded-lg overflow-hidden">
+              <img src={product.image} alt={product.title} className="w-full h-48 object-cover"></img>
+              <div className="p-4">
+                <h3 className="text-sm font-semibold">{product.title}</h3>
+                <p className="text-gray-500 text-xs"> 
+                  <div class="flex">
+                <img src={Star4} alt="Star 4"/>
+                <img  src={Star4} alt="Star 4"/>
+                <img  src={Star4} alt="Star 4"/>
+                <img  src={Star4} alt="Star 4"/>
+                <img  src={Star6} alt="Star 6"/>4.8</div></p>
+                <p className="text-black font-semibold text-lg mt-2">LKR {product.price}</p>
+                
+                <p className="text-red-500 font-bold text-xs mt-1 ">{product.timeLeft}<div className="text-black font-normal">more</div></p>
+                <img src={Heart} alt="Heart Icon" className="w-5 h-5 absolute top-2 right-2 cursor-pointer" />
+              </div>
+            </div>
+          ))}
+        </div>
+        </div>
 
 <div className="container mx-auto p-4">
         <div>

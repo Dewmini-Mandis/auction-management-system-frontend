@@ -7,6 +7,7 @@ import NotFound from './components/NotFound/NotFound';
 import Notification from './pages/Notification/Notification';
 import Slidebar from './pages/Slidebar/Slidebar';
 
+
 const AppRoutes = () => {
   return (
     <Router>
@@ -28,6 +29,8 @@ const AppRoutes = () => {
         <Route path="/notification" element={<Notification/>} />
 
         <Route path="/slidebar" element={<Slidebar/>} />
+
+       
         
 
       </Routes>
