@@ -3,13 +3,13 @@ import AppRoutes from './routes';
 import { Toaster } from 'sonner';
 
 
+
 const App = () => {
   return (
     <>
-    <Toaster richColors />
-    <AppRoutes />
-    </>
-      
+      <Toaster richColors />
+      <AppRoutes />
+    </>      
   );
 };
 

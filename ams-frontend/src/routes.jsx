@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Import your components
 import HomePage from './pages/Home/HomePage';
 import NotFound from './components/NotFound/NotFound';
+import Notification from './pages/Notification/Notification';
+import Slidebar from './pages/Slidebar/Slidebar';
 
 import ProductList from './pages/Product/ProductList/ProductList';
 import MyBids from './pages/MyBids/MyBids';
@@ -42,6 +44,13 @@ const AppRoutes = () => {
 
         {/* Catch-All Route */}
         <Route path="*" element={<NotFound />} />
+
+        <Route path="/notification" element={<Notification/>} />
+
+        <Route path="/slidebar" element={<Slidebar/>} />
+
+       
+        
 
       </Routes>
     </Router>
