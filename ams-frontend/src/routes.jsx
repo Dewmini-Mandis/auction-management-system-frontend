@@ -26,7 +26,7 @@ const AppRoutes = () => {
         <Route path="/productlist" element={<ProductList />} />
         <Route path="/wishlist" element={<WishList />} />
         <Route path="/mybids" element={<MyBids />} />
-        <Route path="/productlist" element={<Product />} />
+        <Route path="/product" element={<Product />} />
 
         {/* Auth Routes */}
         <Route path="/signin" element={<SignInPage />} />
