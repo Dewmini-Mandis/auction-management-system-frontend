@@ -1,4 +1,5 @@
 import React, { useState , useEffect} from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import approval from '../../../assets/images/approval.png';
 import axiosInstance from '../../../utils/axiosInstance';
 
@@ -6,20 +7,23 @@ const IncreaseBid = ({ bid, onClose }) => {
   const [bidAmount, setBidAmount] = useState('');
   const [bidCount, setBidCount] = useState(0);
   const [error, setError] = useState('');
-
   const [isIMaxBidder, setIAmMaxBidder] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
 
   const handleInputChange = (e) => {
     const value = e.target.value;
+    console.log('Input value:', value); // Check what the input value is
     if (/^\d*$/.test(value)) {
       setBidAmount(value);
     }
   };
 
+
+  const minBidAmount = bid?.highestBidAmount + 100;
+
+
   useEffect(() => {
-
-
     if(bid?.highestBidAmount <= bid?.bidAmount){
       setIAmMaxBidder(true);
     }
@@ -42,6 +46,36 @@ const IncreaseBid = ({ bid, onClose }) => {
 
     fetchBidCount();
   }, [bid.auctionId]); // Runs when bid.auctionId changes
+
+
+  const handleIncreaseBid = async () => {
+    console.log('Current Bid Amount:', bidAmount);
+    console.log('Minimum Bid Amount:', minBidAmount);
+
+    if (parseInt(bidAmount) < minBidAmount) {
+      setError(`Your bid must be at least Rs. ${minBidAmount}`);
+      return;
+    }
+    
+    try {
+
+      console.log(bidAmount);
+
+       axiosInstance.put(`/api/Bid/UpdateBid`, {
+        bidId: bid.bidId,
+        bidAmount: bidAmount,
+
+      });
+      setError('');
+      onClose(); // Close the modal
+
+      // Redirect to My Bids page
+      navigate('/mybids'); // Change the path as per your routing
+    } catch (err) {
+      console.error('Error increasing bid:', err);
+      setError('Failed to increase bid');
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -89,13 +123,13 @@ const IncreaseBid = ({ bid, onClose }) => {
                 value={bidAmount}
                 onChange={handleInputChange}
               />
-              <button className="px-5 sm:px-6 py-1 text-[10px] sm:text-[13px] h-6 sm:h-8 my-2 text-white bg-[#480C7B] rounded-[5px] ml-auto hover:bg-purple-800">
+              <button className="px-5 sm:px-6 py-1 text-[10px] sm:text-[13px] h-6 sm:h-8 my-2 text-white bg-[#480C7B] rounded-[5px] ml-auto hover:bg-purple-800" onClick={handleIncreaseBid}>
                 Increase Bid
               </button>
             </div>
           </div>
 
-          <p className='mb-2 text-[8px] sm:text-[11px] text-gray-700'>Enter Rs. {bid.highestBidAmount.toFixed(2)} or more</p>
+          <p className='mb-2 text-[8px] sm:text-[11px] text-gray-700'>Enter Rs. {minBidAmount.toFixed(2)} or more</p>
         </div>
 
 
