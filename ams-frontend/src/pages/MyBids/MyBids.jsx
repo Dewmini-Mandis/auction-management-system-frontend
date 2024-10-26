@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SidebarBuyer from '../../components/layout/SidebarBuyer/SidebarBuyer';
 import Header from '../../components/layout/Header/Header';
 import IncreaseBid from '../../components/layout/Bid/IncreaseBid';
 import Breadcrumb from '../../components/layout/Breadcrumb/Breadcrumb';
+import deleteicon from '../../assets/images/deleteicon.png';
+import axios from 'axios'
 
 function MyBids() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);    // State for sidebar visibility
   const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');         // State for breadcrumb
   const [isIncreaseModalOpen, setIsIncreaseModalOpen] = useState(false);  // State for modal
+  const [bids, setBids] = useState([]);  // State for bids data
 
   // Toggle sidebar visibility
   const toggleSidebarVisibility = () => {
@@ -29,6 +32,51 @@ function MyBids() {
     setIsIncreaseModalOpen(false);
   };
 
+
+
+  useEffect(() => {
+    // Function to fetch bids data from the backend
+    axios.get('https://localhost:7010/api/Bid/GetMyBids', {
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXdtaW5pbmF2b2R5YTIwMDJAZ21haWwuY29tIiwiVXNlcklkIjoiMiIsIlJvbGUiOiJidXllciIsImV4cCI6MTcyOTg3NjAyNywiaXNzIjoiWW91ckFwcCIsImF1ZCI6IllvdXJBcHBVc2VycyJ9.Jj48HbKhadhRdwUMhtkZ5lqubcnKzSnHjCgQ6tYV4aU` // Correct token retrieval ${localStorage.getItem('token')}
+      }
+    })
+      .then(response => {
+        setBids(response.data); // Set the fetched data to state
+        console.log('Fetched bids:', response.data);
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 401) {
+          console.error('Unauthorized! Redirecting to login...');
+          // Redirect to login page or show an error message
+          // window.location.href = '/login'; 
+        } else {
+          console.error('Error fetching bids:', error.message);
+        }
+      });
+    // Call the function when the component is loaded
+  }, []);
+
+  const handleDeleteBid = (bidId) => {
+    // Show a confirmation dialog before deleting
+    const confirmDelete = window.confirm("Are you sure you want to delete this bid?");
+    
+    if (confirmDelete) {
+      axios.delete(`https://localhost:7010/api/Bid/DeleteBid/${bidId}`, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZXdtaW5pbmF2b2R5YTIwMDJAZ21haWwuY29tIiwiVXNlcklkIjoiMiIsIlJvbGUiOiJidXllciIsImV4cCI6MTcyOTg3NjAyNywiaXNzIjoiWW91ckFwcCIsImF1ZCI6IllvdXJBcHBVc2VycyJ9.Jj48HbKhadhRdwUMhtkZ5lqubcnKzSnHjCgQ6tYV4aU`
+        }
+      })
+      .then(response => {
+        setBids(bids.filter(bid => bid.bidId !== bidId));
+        console.log("Bid deleted successfully:", response.data);
+      })
+      .catch(error => {
+        console.error("Error deleting bid:", error.message);
+      });
+    }
+  };
+  
   return (
     <div className="w-full h-screen parent-container">
       <React.Fragment>
@@ -50,19 +98,49 @@ function MyBids() {
           />
 
           {/* Main Content */}
-          <div className={`flex flex-col flex-grow bg-[#F5F0FA] p-4 ${isSidebarVisible ? 'w-3/4' : 'w-full'}`}>
-            <div className="flex items-center justify-between p-4 mb-4 border border-gray-200 rounded-lg">
-              <div>
-                <h2 className="text-lg font-medium">Louis Vuitton Monogram Mini Handbag</h2>
-                <p className="text-sm text-gray-500">Current bid: Rs. 25000.00</p>
-              </div>
-              <button
-                className="px-4 py-2 text-white bg-purple-600 rounded hover:bg-purple-800"
-                onClick={handleOpenIncreaseModal}
-              >
-                Increase Bid
-              </button>
-            </div>
+          <div className={`flex flex-col flex-grow bg-[#F5F0FA] p-8 ${isSidebarVisible ? 'w-3/4' : 'w-full'}`}>
+
+            <h1 className="flex justify-center mb-4 text-lg font-medium text-gray-800">My Bids</h1>
+           
+
+          <table className="min-w-full bg-white ">
+          <thead className='bg-[#5f288f]'>
+    <tr>
+      <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300">Product Name</th>
+      <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300">My Current Bid</th>
+      <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300">Current Highest Bid</th>
+      <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300">Time Left</th>
+      <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300"></th>
+      <th className="px-6 py-2 text-sm font-medium text-left text-white border border-slate-300"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    {bids.map((bid) => (
+      <tr key={bid.bidId} className="border border-slate-100">
+        <td className="px-6 py-2 text-[14px] font-medium text-black border border-slate-300">{bid.productName}</td>
+        <td className="px-6 py-2 text-[14px] text-black border border-slate-300">Rs. {bid.bidAmount.toFixed(2)}</td>
+        <td className="px-6 py-2 text-[14px] text-black border border-slate-300">Rs. {bid.highestBidAmount.toFixed(2)}</td>
+        <td className="px-6 py-2 text-[14px] font-medium text-red-500 border border-slate-300">{bid.timeLeft}</td>
+        <td className="px-6 py-2 border border-slate-300">
+          <button
+            className="px-4 py-1 text-black font-medium rounded hover:bg-slate-200 hover:border-slate-200 text-[12px] border border-slate-800"
+            onClick={handleOpenIncreaseModal}
+          >
+            Increase Bid
+          </button>
+        </td>
+        <td className="px-4 py-2 border border-slate-300">
+          <button
+            className="px-3 py-1 hover:opacity-50" title="Delete"
+            onClick={() => handleDeleteBid(bid.bidId)}          >
+             <img className="w-5 h-5" src={deleteicon} alt="delete" />
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 
             {/* Increase Bid Modal */}
             {isIncreaseModalOpen && <IncreaseBid onClose={handleCloseIncreaseModal} />}

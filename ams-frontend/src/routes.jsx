@@ -4,10 +4,17 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Import your components
 import HomePage from './pages/Home/HomePage';
 import NotFound from './components/NotFound/NotFound';
+
 import ProductList from './pages/Product/ProductList/ProductList';
 import MyBids from './pages/MyBids/MyBids';
 import WishList from './pages/Wishlist/WishList';
 import Product from './pages/Product/ProductList/Product';
+
+import SignInPage from './pages/Auth/SignIn/SignInPage';
+import SignUpPage from './pages/Auth/SignUp/SignUpPage';
+import EmailVerification from './pages/Auth/EmailVerification/EmailVerification';
+import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
+import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 const AppRoutes = () => {
   return (
@@ -22,7 +29,13 @@ const AppRoutes = () => {
         <Route path="/productlist" element={<Product />} />
 
         {/* Auth Routes */}
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/email-verification" element={<EmailVerification />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
+        
 
         {/* Protected Routes */}
 
