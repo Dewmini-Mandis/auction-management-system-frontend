@@ -73,7 +73,7 @@ const IncreaseBid = ({ bid, onClose }) => {
 
         <p className='my-2 text-[10px] sm:text-[13px]'>{bidCount} bid(s) | Time left : <span className='text-red-600'>{bid.timeLeft}</span></p>
         <p className='mb-2 text-[10px] sm:text-[13px]'>Current highest bid : <span className='font-bold text-[11px] sm:text-[14px]'>Rs. {bid.highestBidAmount.toFixed(2)}</span></p>
-        <p className='mb-2 text-[10px] sm:text-[13px]'>Shipping : <span className=''>{bid.shippingFee}</span></p>
+        <p className='mb-2 text-[10px] sm:text-[13px]'>Shipping : <span className=''>Rs. {bid.shippingFee.toFixed(2)}</span></p>
 
         <div className='p-2 my-1 rounded-lg bg-[#C8C8C8]'>
 
