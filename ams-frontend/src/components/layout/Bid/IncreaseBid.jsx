@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import approval from '../../../assets/images/approval.png';
 import axiosInstance from '../../../utils/axiosInstance';
 
-const IncreaseBid = ({ bid, onClose }) => {
+const IncreaseBid = ({ bid, onClose, newBid }) => {
   const [bidAmount, setBidAmount] = useState('');
   const [bidCount, setBidCount] = useState(0);
   const [error, setError] = useState('');
