@@ -18,6 +18,9 @@ import EmailVerification from './pages/Auth/EmailVerification/EmailVerification'
 import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
+import Watchlist from './pages/Watchlist/Watchlist';
+
+
 const AppRoutes = () => {
   return (
     <Router>
@@ -36,6 +39,8 @@ const AppRoutes = () => {
         <Route path="/email-verification" element={<EmailVerification />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+
+        <Route path="/watchlist" element={<Watchlist />} />
 
         
 
