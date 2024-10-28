@@ -57,7 +57,7 @@ const HomePage = () => {
     <React.Fragment>
       <Header />
 
-      <div id="controls-carousel" className="relative w-full" data-carousel="static">
+      <div id="controls-carousel" className="relative w-full pt-20" data-carousel="static">
         <div className="relative h-56 overflow-hidden md:h-auto">
           <div className="flex">
 
@@ -71,7 +71,7 @@ const HomePage = () => {
             {/* Back button */}
             <button
               onClick={Back1}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-400 text-white p-2 text-2xl rounded-full"
+              className="absolute p-2 text-2xl text-white transform -translate-y-1/2 bg-gray-400 rounded-full left-2 top-1/2"
             >
               &lt;
             </button>
@@ -79,7 +79,7 @@ const HomePage = () => {
             {/* Next button */}
             <button
               onClick={Back}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-400 text-white p-2 text-2xl rounded-full"
+              className="absolute p-2 text-2xl text-white transform -translate-y-1/2 bg-gray-400 rounded-full right-2 top-1/2"
             >
               &gt;
             </button>
@@ -93,8 +93,8 @@ const HomePage = () => {
 
 
 
-        <div className="container mx-auto p-4">
-        <div className="flex justify-between items-center">
+        <div className="container p-4 mx-auto">
+        <div className="flex items-center justify-between">
             <div className="text-2xl font-bold text-black">Featured Products</div>
  
               <div className="col-span-2 h-24 w-14 text-right   flex justify-center  border-[9747FF] border-dashed border-2 rounded-lg  items-center">
@@ -107,39 +107,39 @@ const HomePage = () => {
             </div>
 </div>
 <br></br>
-<div className="container mx-auto p-4">
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+<div className="container p-4 mx-auto">
+<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
 
 
     {featuredProducts.map((product) => (
-            <div key={product.id} className="bg-white shadow-md rounded-lg overflow-hidden">
-              <img src={product.image} alt={product.title} className="w-full h-48 object-cover"></img>
+            <div key={product.id} className="overflow-hidden bg-white rounded-lg shadow-md">
+              <img src={product.image} alt={product.title} className="object-cover w-full h-48"></img>
               <div className="p-4">
                 <h3 className="text-sm font-semibold">{product.title}</h3>
-                <p className="text-gray-500 text-xs"> 
+                <p className="text-xs text-gray-500"> 
                   <div class="flex">
                 <img src={Star4} alt="Star 4"/>
                 <img  src={Star4} alt="Star 4"/>
                 <img  src={Star4} alt="Star 4"/>
                 <img  src={Star4} alt="Star 4"/>
                 <img  src={Star6} alt="Star 6"/>4.8</div></p>
-                <p className="text-black font-semibold text-lg mt-2">LKR {product.price}</p>
+                <p className="mt-2 text-lg font-semibold text-black">LKR {product.price}</p>
                 
-                <p className="text-red-500 font-bold text-xs mt-1 ">{product.timeLeft}<div className="text-black font-normal">more</div></p>
-                <img src={Heart} alt="Heart Icon" className="w-5 h-5 absolute top-2 right-2 cursor-pointer" />
+                <p className="mt-1 text-xs font-bold text-red-500 ">{product.timeLeft}<div className="font-normal text-black">more</div></p>
+                <img src={Heart} alt="Heart Icon" className="absolute w-5 h-5 cursor-pointer top-2 right-2" />
               </div>
             </div>
           ))}
         </div>
         </div>
 
-<div className="container mx-auto p-4">
+<div className="container p-4 mx-auto">
         <div>
-            <div className="text-2xl font-bold text-black  flex justify-between items-center">Bid by Categories</div>
+            <div className="flex items-center justify-between text-2xl font-bold text-black">Bid by Categories</div>
 
 <div>
-<div className="flex items-center justify-between min-h-10 container mx-auto">
-<div className="flex flex-row-reverse space-x-4  space-y-10">
+<div className="container flex items-center justify-between mx-auto min-h-10">
+<div className="flex flex-row-reverse space-x-4 space-y-10">
    <br></br>
 <a href="#">
     <img src={Ellipse12} alt="Ellipse 12" className="mx-2 my-2 ">
@@ -180,8 +180,8 @@ const HomePage = () => {
     </div>
     </div>
 
-    <div className="flex items-center justify-between min-h-10 container mx-auto">
-    <div className="flex flex-row-reverse space-x-4  space-y-4">
+    <div className="container flex items-center justify-between mx-auto min-h-10">
+    <div className="flex flex-row-reverse space-x-4 space-y-4">
 
 
      

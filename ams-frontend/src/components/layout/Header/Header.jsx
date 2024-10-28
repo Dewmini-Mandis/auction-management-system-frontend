@@ -15,7 +15,7 @@ import menu from '../../../assets/images/menu.png';
 function Header() {
     return (
 
-        <div className='bg-[#FDFAFF] w-full h-fit grid md:grid-rows-3'>
+        <div className='bg-[#FDFAFF] w-full h-fit grid md:grid-rows-3 fixed z-50'>
 
             <div className='grid w-full col-start-3 row-start-1 md:col-start-1 md:row-span-1 h-fit md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5 2xl:grid-col-6'>
 
@@ -36,7 +36,7 @@ function Header() {
                 </div>
 
             </div>
-            <div className='grid w-full grid-cols-3 row-span-2 row-start-1 md:row-start-2 md:grid-cols-4 h-fit xl:grid-cols-7 md:border-y md:border-solid md:border-gray-300'>
+            <div className='grid w-full grid-cols-3 row-span-2 row-start-1 py-1 md:row-start-2 md:grid-cols-4 h-fit xl:grid-cols-7 md:border-y md:border-solid md:border-gray-300'>
                 <div className='col-start-1 my-1 md:mt-3 lg:mt-1 ms-2 '>
                     <img className='w-[125px] h-[30px] lg:w-[135px] lg:h-[38px] xl:w-[150px] xl:h-[40px]' src={logo} alt="Logo" />
                 </div>
