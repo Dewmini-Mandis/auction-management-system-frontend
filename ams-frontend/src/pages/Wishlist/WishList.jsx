@@ -31,7 +31,7 @@ const WishList = () => {
           Place Bid
         </button>
 
-        {isModalOpen && <AddBid onClose={handleCloseModal} auctionId="3" onPlaceBid={handlePlaceBid}/>}
+        {isModalOpen && <AddBid onClose={handleCloseModal} auctionId="4" onPlaceBid={handlePlaceBid}/>}
     </div>
   )
 }
