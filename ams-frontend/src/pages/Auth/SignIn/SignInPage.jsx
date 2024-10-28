@@ -32,7 +32,7 @@ const SignInPage = () => {
 
       // Check if there's an intended URL
       const intendedUrl = localStorage.getItem('intendedUrl');
-      if (intendedUrl) {
+      if (intendedUrl && intendedUrl !== '/signin') {
         // Navigate to the intended URL and clear it from storage
         localStorage.removeItem('intendedUrl');
         navigate(intendedUrl);
