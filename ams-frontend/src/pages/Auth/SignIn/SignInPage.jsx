@@ -32,7 +32,7 @@ const SignInPage = () => {
 
       // Check if there's an intended URL
       const intendedUrl = localStorage.getItem('intendedUrl');
-      if (intendedUrl) {
+      if (intendedUrl && intendedUrl !== '/signin') {
         // Navigate to the intended URL and clear it from storage
         localStorage.removeItem('intendedUrl');
         navigate(intendedUrl);
@@ -46,7 +46,7 @@ const SignInPage = () => {
     } catch (error) {
       console.error("Login failed:", error);
       // Show an error toast
-      toast.error('Login failed!');
+      toast.error(error.response.data);
       setLoading(false);
     }
 
@@ -60,10 +60,10 @@ const SignInPage = () => {
         <Loading />
       )}
 
-      <div className="flex items-center justify-center h-screen bg-[#FDFAFF] sm:bg-[#edeaf1]">
+      <div className="flex items-center justify-center h-screen bg-[#FFFFFF] sm:bg-[#edeaf1]">
 
         <div className="grid md:grid-cols-2 gap-10 bg-[#FFFFFF] p-10 sm:border-[1px] sm:border-[#f4e8ff] md:rounded-[20px]">
-          
+
           <div>
             <img src={logo} alt="svad" />
             <h1 className="text-3xl font-bold text-slate-900 font-light mt-6 text-[35px]" style={{ fontFamily: 'Poppins, sans-serif' }}>Sign In</h1>
@@ -90,7 +90,7 @@ const SignInPage = () => {
 
             <div className="pt-5 mt-2">
               <a href="/forgot-password" className="text-[#4B5563] hover:underline">Forgot Password?</a>
-              <button type="submit" required className="w-[120px] h-[35px] leading-[18px] float-end p-2 bg-[#480C7B] text-white rounded-[10px]">Sign In</button>
+              <button type="submit" className="w-[120px] h-[35px] leading-[18px] float-end p-2 bg-[#480C7B] text-white rounded-[10px]">Sign In</button>
             </div>
 
             <div className="pt-[60px]">
