@@ -1,29 +1,22 @@
-// page for reset password
-// get the email from the location state and send a request to the backend
-// request formate to the backend
-// {
-//     "email": "user@example.com",
-//     "newPassword": "RG%Wf PnSd)c\"'",
-//     "confirmPassword": "r<i@+4%Q",
-//     "otpCode": "string"
-//   }
-
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import axiosInstance from '../../../utils/axiosInstance';
 import Loading from '../../../components/Loading/Loading';
+import logo from "../../../assets/images/logos/logo.png";
+
 
 const ResetPassword = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [loading, setLoading] = useState(false);
     const [otpCode, setOtpCode] = useState('');
-    const [email, setEmail] = useState(location.state?.email || '');
+    const email = location.state?.email || '';
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleResetPassword = async () => {
+        event.preventDefault()
         setLoading(true);
         try {
             const response = await axiosInstance.post('/api/Auth/ResetPassword', {
@@ -43,65 +36,76 @@ const ResetPassword = () => {
         setLoading(false);
     };
 
+
+    // re send otp code
+    const handleResend = async () => {
+        setLoading(true);
+        try {
+            const response = await axiosInstance.post('/api/Auth/ReGenerateOtp', {
+                email,
+            });
+            if (response.status === 200) {
+                toast.success('Resend OTP successfully');
+            }
+        } catch (error) {
+            toast.error(error);
+
+        }
+        setLoading(false);
+    }
+
+
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
-                <h3 className="text-2xl font-semibold text-center mb-4">Reset Password</h3>
-                <p className="text-center text-gray-600 mb-6">
-                    Please enter the OTP code sent to your email address
-                </p>
-                <div className="mb-4">
-                    <label htmlFor="otpCode" className="block text-gray-700 font-medium mb-2">
-                        OTP Code
-                    </label>
-                    <input
-                        type="text"
-                        id="otpCode"
-                        name="otpCode"
-                        value={otpCode}
-                        onChange={(e) => setOtpCode(e.target.value)}
-                        placeholder="OTP Code"
-                        className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 focus:ring-opacity-75"
-                    />
+        <React.Fragment>
+
+            {loading && (
+                <Loading />
+            )}
+
+            <div className="flex items-center justify-center h-screen bg-[#FFFFFF] sm:bg-[#edeaf1]">
+
+                <div className="grid md:grid-cols-2 gap-2 bg-[#FFFFFF] p-10 sm:border-[1px] sm:border-[#f4e8ff] md:rounded-[20px]">
+
+                    <div className='mb-[20px]'>
+                        <img src={logo} alt="svad" />
+                        <h1 className="text-3xl font-bold text-slate-900 font-light mt-10 text-[35px]" style={{ fontFamily: 'Poppins, sans-serif' }}>Change</h1>
+                        <h1 className="text-3xl font-bold text-slate-900 font-light mt-2 text-[35px]" style={{ fontFamily: 'Poppins, sans-serif' }}>Password</h1>
+                        {/* welcome message */}
+                        <p className="text-slate-600 mt-3">No worries, we got you covered</p>
+                    </div>
+
+                    <form onSubmit={handleResetPassword}>
+
+                        <div className="pt-5">
+                            <div htmlFor="">One time password - OTP</div>
+                            <input type="text" required className="w-[335px] h-[35px] p-2 mt-2 border-[1px] border-[#cccccc] rounded-[8px]" onChange={(e) => setOtpCode(e.target.value)} />
+                        </div>
+
+                        <div className="pt-5">
+                            <div htmlFor="">Password</div>
+                            <input type="password" required className="w-[335px] h-[35px] p-2 mt-2 border-[1px] border-[#cccccc] rounded-[8px]" onChange={(e) => setNewPassword(e.target.value)} />
+                        </div>
+
+                        <div className="pt-5">
+                            <div htmlFor="">Confirm password</div>
+                            <input type="password" required className="w-[335px] h-[35px] p-2 mt-2 border-[1px] border-[#cccccc] rounded-[8px]" onChange={(e) => setConfirmPassword(e.target.value)} />
+                        </div>
+
+                        <div className="pt-5 mt-2">
+                            <a href="" className="text-[#4B5563] hover:underline" onClick={handleResend}>Re-send OTP</a>
+                            <button type="submit" required className="w-[120px] h-[35px] leading-[18px] float-end p-2 bg-[#480C7B] text-white rounded-[10px]">Change</button>
+                        </div>
+
+                        <div className="pt-[65px]">
+                            <p>Don't you want to change password? &nbsp;<a href="/signin" className="text-[#4B5563] hover:underline">Sign In</a></p>
+                        </div>
+
+                    </form>
+
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="newPassword" className="block text-gray-700 font-medium mb-2">
-                        New Password
-                    </label>
-                    <input
-                        type="password"
-                        id="newPassword"
-                        name="newPassword"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        placeholder="New Password"
-                        className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 focus:ring-opacity-75"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="confirmPassword" className="block text-gray-700 font-medium mb-2">
-                        Confirm Password
-                    </label>
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="Confirm Password"
-                        className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 focus:ring-opacity-75"
-                    />
-                </div>
-                <button
-                    type="button"
-                    onClick={handleResetPassword}
-                    disabled={loading}
-                    className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none disabled:opacity-50"
-                >
-                    {loading ? <Loading /> : 'Reset Password'}
-                </button>
+
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 

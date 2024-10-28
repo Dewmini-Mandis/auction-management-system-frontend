@@ -1,13 +1,3 @@
-// Page for signing up a new user
-// This page is only accessible to users who are not logged in
-// Request data
-// {
-//     "firstName": "string",
-//     "lastName": "string",
-//     "email": "user@example.com",
-//     "password": "OO}(z2';0&-"
-//   }
-
 import React, { useState } from 'react';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
@@ -59,7 +49,7 @@ const SignUpPage = () => {
                 <Loading />
             )}
 
-            <div className="flex items-center justify-center h-screen bg-[#FDFAFF] sm:bg-[#edeaf1]">
+            <div className="flex items-center justify-center h-screen bg-[#FFFFFF] sm:bg-[#edeaf1]">
 
                 <div className="grid md:grid-cols-2 gap-2 bg-[#FFFFFF] p-10 sm:border-[1px] sm:border-[#f4e8ff] md:rounded-[20px]">
 
@@ -109,8 +99,6 @@ const SignUpPage = () => {
 
             </div>
         </React.Fragment>
-
-
     );
 }
 
