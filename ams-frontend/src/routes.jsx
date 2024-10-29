@@ -25,6 +25,9 @@ import Subcategory from './pages/Category_list/Subcategory';
 
 import AuctionDetails from './pages/Auction_Details/AuctionDetails';
 
+import AuctionList from './pages/Auction/AuctionList';
+import Auction from './pages/Auction/Auction';
+
 import Footer from './pages/Footer/Footer';
 
 import Checkout from './pages/Payment/Checkout';
@@ -56,6 +59,10 @@ const AppRoutes = () => {
         <Route path="/category" element={<Category />} />
         <Route path="/categoryproduct" element={<CategoryProduct />} />
         <Route path="/subcategory" element={<Subcategory />} />
+
+        <Route path="/auctionlist" element={<AuctionList />} />
+        <Route path="/auction" element={<Auction />} />
+
 
         {/* Protected Routes */}
 
