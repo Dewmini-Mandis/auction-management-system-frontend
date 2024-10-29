@@ -19,6 +19,13 @@ import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 import Watchlist from './pages/Watchlist/Watchlist';
+import Category from './pages/Category_list/Category';
+import CategoryProduct from './pages/Category_list/CategoryProduct';
+import Subcategory from './pages/Category_list/Subcategory';
+
+import AuctionDetails from './pages/Auction_Details/AuctionDetails';
+
+import Footer from './pages/Footer/Footer';
 
 import Checkout from './pages/Payment/Checkout';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
@@ -46,6 +53,9 @@ const AppRoutes = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
 
         <Route path="/watchlist" element={<Watchlist />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/categoryproduct" element={<CategoryProduct />} />
+        <Route path="/subcategory" element={<Subcategory />} />
 
         {/* Protected Routes */}
 
@@ -57,11 +67,16 @@ const AppRoutes = () => {
 
         <Route path="/slidebar" element={<Slidebar/>} />
 
+
        {/* Payment Routes */}
         <Route path="/checkout" element={<Checkout />} />
         <Route path='/Payment-success' element={<PaymentSuccess/>}/>
         <Route path="/Transactions" element={<Transactions />} />
+
+        <Route path="/auctiondetails" element={<AuctionDetails/>} />
+
         
+        <Route path="/footer" element={<Footer/>} />
 
       </Routes>
     </Router>
