@@ -3,12 +3,16 @@ import { useState, useEffect } from 'react';
 import SideBar from '../../components/layout/SideBar/SideBar';
 import HeaderSeller from '../../components/layout/HeaderSeller/HeaderSeller';
 import axiosInstance from "../../utils/axiosInstance";
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 function AuctionList() {
 
+    const navigate = useNavigate();
 
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');
+    var categoryId;
 
 
     const toggleSidebarVisibility = () => {
@@ -29,7 +33,6 @@ function AuctionList() {
     useEffect(() => {
         axiosInstance.get('/api/Auctions/GetAllAuctions')
             .then((res) => {
-                console.log(res.data);
                 setAuctions(res.data);
             })
             .catch((err) => {
@@ -75,7 +78,7 @@ function AuctionList() {
                                         </thead>
                                         <tbody className="bg-white divide-y divide-neutral-200">
                                             {auctions.map((auction) => (
-                                                <tr key={auction.auctionId} className="hover:bg-gray-100 cursor-pointer">
+                                                <tr key={auction.auctionId} className="hover:bg-gray-100 cursor-pointer" onClick={() => navigate(`/auction?auctionid=${auction.auctionId}`)}>
                                                     <td className="px-6 py-4 whitespace-nowrap">
                                                         <div className="text-sm font-medium text-neutral-900">{auction.product?.name}</div>
                                                     </td>

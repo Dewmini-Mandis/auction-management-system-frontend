@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import SideBar from '../../components/layout/SideBar/SideBar';
 import HeaderSeller from '../../components/layout/HeaderSeller/HeaderSeller';
 import axiosInstance from "../../utils/axiosInstance";
+import { useLocation } from 'react-router-dom';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+
 function Auction() {
+
+    const search = useLocation().search;
+    const auctionId = new URLSearchParams(search).get('auctionid');
+
 
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');
@@ -19,8 +25,6 @@ function Auction() {
     const handleBreadcrumbChange = (newBreadcrumb) => {
         setBreadcrumb(newBreadcrumb);
     };
-
-    const auctionId = 11;
 
     const [formData, setFormData] = useState({});
 
@@ -47,8 +51,6 @@ function Auction() {
     useEffect(() => {
         axiosInstance.get(`/api/Auctions/GetAuctionById?auctionId=${auctionId}`)
             .then((res) => {
-                console.log("Fetched data:", res.data);
-
                 const data = res.data;
 
                 setFormData({
