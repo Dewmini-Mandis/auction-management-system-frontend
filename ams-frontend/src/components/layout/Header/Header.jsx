@@ -21,7 +21,7 @@ function Header() {
 
                 <div className='hidden col-start-1 ms-6 w-fit h-fit md:inline-block '>
                     <TopBarLinks linktext='Sign in' linkurl="/signin" /><span className='text-[#480C7B] text-[10px] md:text-[16px]'>&nbsp; or &nbsp;</span>
-                    <TopBarLinks linktext='Register' linkurl="/register" />
+                    <TopBarLinks linktext='Sign up' linkurl="/signup" />
                 </div>
 
                 <div className ="flex w-auto col-start-3 h-fit md:ms-2 lg:col-start-4 xl:ms-5 xl:col-start-5 2xl:col-start-6">
