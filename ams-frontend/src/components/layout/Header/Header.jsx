@@ -17,10 +17,10 @@ function Header() {
 
         <div className='bg-[#FDFAFF] w-full h-fit grid md:grid-rows-3 fixed z-50'>
 
-            <div className='grid w-full col-start-3 row-start-1 md:col-start-1 md:row-span-1 h-fit md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5 2xl:grid-col-6'>
+            <div className='grid w-full col-start-3 row-start-1 md:col-start-1 md:row-span-1 h-fit md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5 2xl:grid-col-6 lg:py-1'>
 
-                <div className='hidden col-start-1 ms-6 w-fit h-fit md:inline-block'>
-                    <TopBarLinks linktext='Sign in' linkurl="/signin" /><span className='text-[#480C7B] text-[10px] lg:text-[12px]'>&nbsp; or &nbsp;</span>
+                <div className='hidden col-start-1 ms-6 w-fit h-fit md:inline-block '>
+                    <TopBarLinks linktext='Sign in' linkurl="/signin" /><span className='text-[#480C7B] text-[10px] md:text-[16px]'>&nbsp; or &nbsp;</span>
                     <TopBarLinks linktext='Register' linkurl="/register" />
                 </div>
 
@@ -36,14 +36,15 @@ function Header() {
                 </div>
 
             </div>
-            <div className='grid w-full grid-cols-3 row-span-2 row-start-1 py-1 md:row-start-2 md:grid-cols-4 h-fit xl:grid-cols-7 md:border-y md:border-solid md:border-gray-300'>
+            <div className='grid w-full grid-cols-3 row-span-2 row-start-1 md:row-start-2 md:grid-cols-4 h-fit xl:grid-cols-7 md:border-y md:border-solid md:border-gray-300  lg:py-2'>
+
                 <div className='col-start-1 my-1 md:mt-3 lg:mt-1 ms-2 '>
-                    <img className='w-[125px] h-[30px] lg:w-[135px] lg:h-[38px] xl:w-[150px] xl:h-[40px]' src={logo} alt="Logo" />
+                    <img className='w-[125px] lg:w-[135px] xl:w-[180px] ' src={logo} alt="Logo" />
                 </div>
                 <div className='flex items-center col-span-2 col-start-2 row-start-2 md:row-start-1 xl:col-start-3 xl:col-span-3'>
-                    <input type="text" className=" my-2 border-solid border-[1.5px] rounded-3xl md:rounded-r-none md:rounded-l-xl lg:rounded-l-2xl h-[17px] w-[260px] xs:h-[20px] xs:w-[400px] md:w-[500px] lg:h-[26px] md:h-[24px] xl:h-[30px] xl:w-[1000px] form-control search-input border-[#8A3CCD] focus:opacity-60 focus:ring focus:ring-violet-300 focus:outline-none placeholder:text-[8px] xs:placeholder:text-[10px] lg:placeholder:text-[12px] bg-[#FDFAFF]" placeholder="   Search any" />
-                    <img className='h-[15px] w-[15px] xss:h-[15px] xss:w-[15px] xs:h-[18px] xs:w-[18px] lg:h-[20px] lg:w-[20px] md:hidden inlne-block -ms-7 ' src={searchicon} alt="Search" />
-                    <button type='button' className='hidden md:inline-flex border-solid border-[1.5px] border-[#8A3CCD] h-[23px] w-[60px] lg:h-[26px] md:h-[24px] xl:h-[30px] xl:w-[90px] rounded-r-xl lg:rounded-r-2xl items-center justify-center -ms-[1.5px]'>
+                    <input type="text" className="md:ps-4 my-2 border-solid border-[1.5px] rounded-3xl md:rounded-r-none md:rounded-l-xl lg:rounded-l-2xl h-[17px] w-[260px] xs:h-[20px] xs:w-[400px] md:w-[500px] lg:h-[26px] md:h-[24px] xl:h-[35px] xl:w-[1000px] form-control search-input border-[#8A3CCD] focus:opacity-60 focus:ring focus:ring-violet-300 focus:outline-none placeholder:text-[8px] xs:placeholder:text-[10px] lg:placeholder:text-[16px] bg-[#FDFAFF] text-[18px] " placeholder="Search any" />
+                    <img className='h-[15px] w-[15px] xss:h-[15px] xss:w-[15px] xs:h-[18px] xs:w-[18px] lg:h-[20px] lg:w-[20px] md:hidden inlne-block-ms-7 ' src={searchicon} alt="Search" />
+                    <button type='button' className='hidden md:inline-flex border-solid border-[1.5px] border-[#8A3CCD] h-[23px] w-[60px] lg:h-[26px] md:h-[24px] xl:h-[35px] xl:w-[90px] rounded-r-lg lg:rounded-r-2xl items-center justify-center -ms-[1.5px]'>
                         <img className='h-[18px] w-[18px] lg:h-[20px] lg:w-[20px] ' src={searchicon} alt="Search" />
                     </button>
                 </div>
