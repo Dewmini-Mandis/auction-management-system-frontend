@@ -48,13 +48,13 @@ const HomePage = () => {
     axiosInstance.get('/api/Category/GetTopLevelCategories')
       .then((response) => {
         setCategories(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       }
       );
 
-    setLoading(false);
 
   }, []);
 
