@@ -8,6 +8,7 @@ import AuctionCard from '../../components/Cards/AucrionCard';
 import CategoryCard from '../../components/Cards/CategoryCard';
 import Loading from '../../components/Loading/Loading';
 
+
 // importing images
 import cImage from '../../assets/images/carousel/carousel-images/Carousel-Image-1.png';
 import back from '../../assets/images/carousel/icons/back.png';
@@ -48,13 +49,13 @@ const HomePage = () => {
     axiosInstance.get('/api/Category/GetTopLevelCategories')
       .then((response) => {
         setCategories(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       }
       );
 
-    setLoading(false);
 
   }, []);
 
