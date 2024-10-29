@@ -20,6 +20,11 @@ import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 import Watchlist from './pages/Watchlist/Watchlist';
 
+import Checkout from './pages/Payment/Checkout';
+import PaymentSuccess from './pages/Payment/PaymentSuccess';
+import Transactions from './pages/Payment/Transactions';
+
+
 
 const AppRoutes = () => {
   return (
@@ -42,8 +47,6 @@ const AppRoutes = () => {
 
         <Route path="/watchlist" element={<Watchlist />} />
 
-        
-
         {/* Protected Routes */}
 
 
@@ -54,7 +57,10 @@ const AppRoutes = () => {
 
         <Route path="/slidebar" element={<Slidebar/>} />
 
-       
+       {/* Payment Routes */}
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path='/Payment-success' element={<PaymentSuccess/>}/>
+        <Route path="/Transactions" element={<Transactions />} />
         
 
       </Routes>
