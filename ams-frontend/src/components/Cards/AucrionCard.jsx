@@ -25,7 +25,7 @@ const AuctionCard = ({ auction }) => {
             />
             <div className="p-4">
                 <div className="flex items-center justify-between">
-                    <div className="text-lg font-medium text-black">{auction.product?.name}</div>
+                    <div className="text-lg font-medium text-black overflow-hidden text-ellipsis">{auction.product?.name}</div>
                 </div>
                 <div className="text-sm text-gray-500 text-justify h-[40px] overflow-hidden text-ellipsis line-clamp-2">{auction.product?.description}</div>
                 <div className="mt-">
