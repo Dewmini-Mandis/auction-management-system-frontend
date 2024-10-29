@@ -23,6 +23,10 @@ import Category from './pages/Category_list/Category';
 import CategoryProduct from './pages/Category_list/CategoryProduct';
 import Subcategory from './pages/Category_list/Subcategory';
 
+import AuctionDetails from './pages/Auction_Details/AuctionDetails';
+
+import Footer from './pages/Footer/Footer';
+
 
 const AppRoutes = () => {
   return (
@@ -60,8 +64,9 @@ const AppRoutes = () => {
 
         <Route path="/slidebar" element={<Slidebar/>} />
 
-       
+        <Route path="/auctiondetails" element={<AuctionDetails/>} />
         
+        <Route path="/footer" element={<Footer/>} />
 
       </Routes>
     </Router>
