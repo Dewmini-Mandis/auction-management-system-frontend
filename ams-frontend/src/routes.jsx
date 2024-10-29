@@ -27,6 +27,11 @@ import AuctionDetails from './pages/Auction_Details/AuctionDetails';
 
 import Footer from './pages/Footer/Footer';
 
+import Checkout from './pages/Payment/Checkout';
+import PaymentSuccess from './pages/Payment/PaymentSuccess';
+import Transactions from './pages/Payment/Transactions';
+
+
 
 const AppRoutes = () => {
   return (
@@ -52,8 +57,6 @@ const AppRoutes = () => {
         <Route path="/categoryproduct" element={<CategoryProduct />} />
         <Route path="/subcategory" element={<Subcategory />} />
 
-        
-
         {/* Protected Routes */}
 
 
@@ -64,7 +67,14 @@ const AppRoutes = () => {
 
         <Route path="/slidebar" element={<Slidebar/>} />
 
+
+       {/* Payment Routes */}
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path='/Payment-success' element={<PaymentSuccess/>}/>
+        <Route path="/Transactions" element={<Transactions />} />
+
         <Route path="/auctiondetails" element={<AuctionDetails/>} />
+
         
         <Route path="/footer" element={<Footer/>} />
 
