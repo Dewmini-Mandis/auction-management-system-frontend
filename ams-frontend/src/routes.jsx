@@ -19,6 +19,9 @@ import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 import Watchlist from './pages/Watchlist/Watchlist';
+import Category from './pages/Category_list/Category';
+import CategoryProduct from './pages/Category_list/CategoryProduct';
+import Subcategory from './pages/Category_list/Subcategory';
 
 
 const AppRoutes = () => {
@@ -41,6 +44,9 @@ const AppRoutes = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
 
         <Route path="/watchlist" element={<Watchlist />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/categoryproduct" element={<CategoryProduct />} />
+        <Route path="/subcategory" element={<Subcategory />} />
 
         
 
