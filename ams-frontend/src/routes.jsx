@@ -32,7 +32,9 @@ import Footer from './pages/Footer/Footer';
 import Checkout from './pages/Payment/Checkout';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
 import Transactions from './pages/Payment/Transactions';
+ import MainCategories from './pages/Categories/MainCatrgories/MainCategories';
 
+ import SubCategory from './pages/Categories/SubCategory/SubCategory';
 
 import UserProfile from './pages/Slidebar/UserProfile/UserProfile'; 
 
@@ -68,6 +70,9 @@ const AppRoutes = () => {
         <Route path="/auctioncreate" element={<AuctionCreate />} />
         <Route path="/auction" element={<Auction />} />
 
+        <Route path="/maincategories" element={<MainCategories />} />
+        <Route path="/subcategory" element={<SubCategory />} />
+
 
         {/* Protected Routes */}
 
@@ -81,9 +86,9 @@ const AppRoutes = () => {
 
 
         {/* Category Routes */}
-        <Route path="/categorylist" element={<Category />} />
-        <Route path="/categoryproduct" element={<Categoryproduct />} />
-        <Route path="/subcategory" element={<Subcategory />} />
+        <Route path="/category-admin" element={<Category />} />
+        <Route path="/categoryproduct-admin" element={<CategoryProduct />} />
+        <Route path="/subcategory-admin" element={<Subcategory />} />
         <Route path="/updatecategory" element={<Updatecategory />} />
         <Route path="/delectcategory" element={<Delectcategory />} />
 
