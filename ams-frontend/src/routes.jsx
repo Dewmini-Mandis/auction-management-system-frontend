@@ -39,12 +39,6 @@ import Transactions from './pages/Payment/Transactions';
 import UserProfile from './pages/Slidebar/UserProfile/UserProfile'; 
 
 
-import Category from './pages/Category_list/Category';
-import Categoryproduct from './pages/Category_list/CategoryProduct';
-import Subcategory from './pages/Category_list/Subcategory';
-import Updatecategory from './pages/Category_list/UpdateCategory';
-import Delectcategory from './pages/Category_list/DelectCategory';
-
 const AppRoutes = () => {
   return (
     <Router>
@@ -86,11 +80,6 @@ const AppRoutes = () => {
 
 
         {/* Category Routes */}
-        <Route path="/category-admin" element={<Category />} />
-        <Route path="/categoryproduct-admin" element={<CategoryProduct />} />
-        <Route path="/subcategory-admin" element={<Subcategory />} />
-        <Route path="/updatecategory" element={<Updatecategory />} />
-        <Route path="/delectcategory" element={<Delectcategory />} />
 
 
        {/* Payment Routes */}
