@@ -1,31 +1,12 @@
 import React, { useState } from 'react';
 import HeaderSeller from '../../components/layout/HeaderSeller/HeaderSeller';
 import SideBar from '../../components/layout/SideBar/SideBar';
-import axios from 'axios';
 
 function Category() {
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');
-    const [categoryName, setCategoryName] = useState('');
-    const [description, setDescription] = useState('');
-    const [image, setImage] = useState(null);
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        axios.post('https://localhost:7010/api/Category/CreateCategory', { 
-            name: categoryName,
-            description: description,
-            parentCategoryId: null
-         })
-            .then((response) => {
-                console.log(response.data);
-                alert('Category created successfully');
-            })
-            .catch((error) => {
-                console.error(error);
-                alert('Failed to create category');
-            });
-    }
+
 
     const toggleSidebarVisibility = () => {
         setIsSidebarVisible(!isSidebarVisible);
@@ -45,13 +26,13 @@ function Category() {
                         <div className="flex-grow p-4 text-black border border-solid border-neutral-200">
                             <div>
                                 <div className='pb-20 bg-purple-100'>
-                                    <h2 className='pt-3 pl-10 ml-20 text-xl font-inter'>Add new category</h2>
+                                    <h2 className='pt-3 pl-10 ml-20 text-xl font-inter'>Update new category</h2>
                                     <div className='-mt-9'>
-                                        <form onSubmit={handleSubmit} className='p-10'>
+                                        <form  className='p-10'>
                                             <table className='w-11/12 ml-20 bg-slate-50 rounded-xl'>
                                                 <thead>
                                                     <tr>
-                                                        <th className='p-5 pt-10 pl-10 ml-0 text-xl text-left'>Category Details</th>
+                                                        <th className='p-5 pt-10 pl-10 ml-0 text-xl text-left'> Category Details</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -85,7 +66,7 @@ function Category() {
                                                                 <input id="upload" type="file" className="hidden p-5" />
                                                             </div>
                                                             <div className="relative float-left w-11/12 p-10 ml-10 -mt-3 border-2 rounded-lg bg-slate-50 min-h-40" id="dropzone">
-                                                                <input type="file" className="absolute inset-0 z-50 float-left w-full h-full opacity-0 min-h-56" onChange={(e) => setImage(e.target.value)} />
+                                                                <input type="file" className="absolute inset-0 z-50 float-left w-full h-full opacity-0 min-h-56"  />
                                                                 <div className="text-center">
                                                                     <img className="w-12 h-12 mx-auto" src="https://www.svgrepo.com/show/357902/image-upload.svg" alt="Upload icon" />
                                                                     <p className="mt-1 text-xs text-gray-500">Drag and drop images & videos</p>
@@ -93,14 +74,14 @@ function Category() {
                                                             </div>
                                                         </td>
                                                         <td className='float-left w-11/12 pb-5 text-left'>
-                                                            <input type="text" className='float-left w-11/12 ml-10 -mt-12 border-2 rounded bg-slate-50 min-h-72' value={description} onChange={(e) => setDescription(e.target.value)} />
+                                                            <input type="text" className='float-left w-11/12 ml-10 -mt-12 border-2 rounded bg-slate-50 min-h-72' />
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div className='float-right pt-5 mt-5 mr-24'>
-                                                <input type='reset' name='Chancel' value="Chancel" className='p-2 mr-10 text-sm font-medium text-center text-purple-900 bg-gray-300 border-2 cursor-pointer w-28 rounded-2xl' />
-                                                <input type='submit' name='Save' value="Create" className='p-2 text-sm font-medium text-center text-white bg-purple-500 border-2 cursor-pointer w-28 rounded-2xl' />
+                                                <input type='reset' name='Cancel' value="Cancel" className='p-2 mr-10 text-sm font-medium text-center text-purple-900 bg-gray-300 border-2 cursor-pointer w-28 rounded-2xl' />
+                                                <input type='submit' name='Update' value="Update" className='p-2 text-sm font-medium text-center text-white bg-purple-500 border-2 cursor-pointer w-28 rounded-2xl' />
                                             </div>
                                         </form>
                                     </div>
