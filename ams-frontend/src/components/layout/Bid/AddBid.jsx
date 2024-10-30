@@ -38,6 +38,7 @@ const AddBid = ({ auctionId, onPlaceBid, onClose }) => {
     const response =  axiosInstance.get(`/api/auctions/GetAuctionById`, {
       params: { auctionId }
     });
+    let intervalId;
     if (auctionDetails?.endTime) {
         setTimeLeft(calculateTimeLeft(auctionDetails.endTime));
      
@@ -92,7 +93,7 @@ const AddBid = ({ auctionId, onPlaceBid, onClose }) => {
         console.log(response.data); 
         onPlaceBid(auctionId, bidAmount); 
         setBidAmount(''); 
-        navigate('/mybids');
+       navigate('/mybids');
         window.location.reload(); 
       } catch (error) {
         console.error("Error placing bid:", error);
@@ -154,7 +155,7 @@ useEffect(() => {
         </div>
 
         <p className='my-2 text-[13px]'>{bidCount} bid(s) | Time Left : <span className='text-red-600'>{timeLeft}</span></p>
-        <p className='mb-2 text-[13px]'>Current Highest Bid : <span className='font-bold text-[14px]' >Rs. {highestBidAmount}.00</span></p>
+        <p className='mb-2 text-[13px]'>Current Highest Bid : <span className='font-bold text-[14px]' >Rs. {highestBidAmount}</span></p>
         <p className='mb-2 text-[13px]'>Shipping : {auctionDetails?.product?.shippingfee === 0 ? 'Free Shipping' : `Rs. ${auctionDetails?.product?.shippingfee.toFixed(2)}`}</p>
 
 
