@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const CategoryCard = ({ category }) => {
     const navigate = useNavigate();
     const categoryId = category?.categoryId;
+    const imageUrl = category.imageUrls?.[0]
 
     const categoryImageUrl =
         category?.logoImageUrls?.[0]
@@ -11,8 +12,8 @@ const CategoryCard = ({ category }) => {
             : "https://via.placeholder.com/150"; // Fallback image URL
 
     const handleClick = () => {
-        // Navigate to SubCategoryPage with categoryId as a query parameter
-        navigate(`/subcategory?categoryId=${categoryId}`);
+        // Navigate to SubCategoryPage with categoryId and categoryImageURL as a query parameter
+        navigate(`/subcategory?categoryId=${categoryId}&imageUrl=${imageUrl}`);
     };
 
     return (

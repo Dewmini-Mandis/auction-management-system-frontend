@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../../../components/layout/Header/Header";
-import cImage from '../../../assets/images/carousel/carousel-images/Carousel-Image-1.png';
 import Loading from '../../../components/Loading/Loading';
 import CategoryCard from "../../../components/Cards/CategoryCard";
 import axiosInstance from "../../../utils/axiosInstance";
@@ -12,11 +11,18 @@ function SubCategory() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const categoryId = queryParams.get('categoryId');
+    const imageUrl = queryParams.get('imageUrl');
 
     const [loading, setLoading] = useState(false);
     const [subCategories, setSubCategories] = useState([]);
     const [auctions, setAuctions] = useState([]);
 
+    const categoryImageUrl =
+        imageUrl
+            ? import.meta.env.VITE_BASE_URL + imageUrl
+            : "https://via.placeholder.com/150"; // Fallback image URL
+
+            
     useEffect(() => {
         if (!categoryId) return;
         window.scrollTo(0, 0);
@@ -58,7 +64,11 @@ function SubCategory() {
                     </div>
                 )}
 
-                <img src={cImage} alt="carousel" />
+
+                {imageUrl !== "undefined" && ( 
+                    <img src={categoryImageUrl} alt="carousel" />
+                )}
+
 
                 {auctions.length > 0 ? (
                     <div className="lg:px-28">
