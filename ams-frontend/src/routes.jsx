@@ -34,7 +34,9 @@ import Footer from './pages/Footer/Footer';
 import Checkout from './pages/Payment/Checkout';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
 import Transactions from './pages/Payment/Transactions';
+ import MainCategories from './pages/Categories/MainCatrgories/MainCategories';
 
+ import SubCategory from './pages/Categories/SubCategory/SubCategory';
 
 
 const AppRoutes = () => {
@@ -57,13 +59,16 @@ const AppRoutes = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
 
         <Route path="/watchlist" element={<Watchlist />} />
-        <Route path="/category" element={<Category />} />
-        <Route path="/categoryproduct" element={<CategoryProduct />} />
-        <Route path="/subcategory" element={<Subcategory />} />
+        <Route path="/category-admin" element={<Category />} />
+        <Route path="/categoryproduct-admin" element={<CategoryProduct />} />
+        <Route path="/subcategory-admin" element={<Subcategory />} />
 
         <Route path="/auctionlist" element={<AuctionList />} />
         <Route path="/auctioncreate" element={<AuctionCreate />} />
         <Route path="/auction" element={<Auction />} />
+
+        <Route path="/maincategories" element={<MainCategories />} />
+        <Route path="/subcategory" element={<SubCategory />} />
 
 
         {/* Protected Routes */}
