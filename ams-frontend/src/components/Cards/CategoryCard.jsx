@@ -1,16 +1,24 @@
 import React from "react";
-import CountdownTimer from "./CountdownTimer";
+import { useNavigate } from 'react-router-dom';
 
 const CategoryCard = ({ category }) => {
+    const navigate = useNavigate();
+    const categoryId = category?.categoryId;
+    const imageUrl = category.imageUrls?.[0]
 
     const categoryImageUrl =
-        category?.imageUrls?.[0]
-            ? import.meta.env.VITE_BASE_URL + auction.imageUrls?.[0]
+        category?.logoImageUrls?.[0]
+            ? import.meta.env.VITE_BASE_URL + category.logoImageUrls?.[0]
             : "https://via.placeholder.com/150"; // Fallback image URL
 
+    const handleClick = () => {
+        // Navigate to SubCategoryPage with categoryId and categoryImageURL as a query parameter
+        navigate(`/subcategory?categoryId=${categoryId}&imageUrl=${imageUrl}`);
+    };
+
     return (
-        <div key={category.categoryId} className="p-4 rounded-lg cursor-pointer">
-            <img src="https://via.placeholder.com/150" alt="Heart" className="w-full rounded-full" />
+        <div key={categoryId} className="p-4 rounded-lg cursor-pointer" onClick={handleClick}>
+            <img src={categoryImageUrl} alt="Category" className="w-full rounded-full" />
             <h1 className="text-center text-xl font-semibold mt-4">{category.name}</h1>
         </div>
     );

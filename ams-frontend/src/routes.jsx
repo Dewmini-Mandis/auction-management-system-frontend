@@ -19,11 +19,9 @@ import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 import Watchlist from './pages/Watchlist/Watchlist';
-import Category from './pages/Category_list/Category';
-import CategoryProduct from './pages/Category_list/CategoryProduct';
-import Subcategory from './pages/Category_list/Subcategory';
 
 import AuctionDetails from './pages/Auction_Details/AuctionDetails';
+
 
 import AuctionList from './pages/Auction/AuctionList';
 import AuctionCreate from './pages/Auction/AuctionCreate';
@@ -34,7 +32,11 @@ import Footer from './pages/Footer/Footer';
 import Checkout from './pages/Payment/Checkout';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
 import Transactions from './pages/Payment/Transactions';
+ import MainCategories from './pages/Categories/MainCatrgories/MainCategories';
 
+ import SubCategory from './pages/Categories/SubCategory/SubCategory';
+
+import UserProfile from './pages/Slidebar/UserProfile/UserProfile'; 
 
 
 const AppRoutes = () => {
@@ -57,13 +59,13 @@ const AppRoutes = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
 
         <Route path="/watchlist" element={<Watchlist />} />
-        <Route path="/category" element={<Category />} />
-        <Route path="/categoryproduct" element={<CategoryProduct />} />
-        <Route path="/subcategory" element={<Subcategory />} />
 
         <Route path="/auctionlist" element={<AuctionList />} />
         <Route path="/auctioncreate" element={<AuctionCreate />} />
         <Route path="/auction" element={<Auction />} />
+
+        <Route path="/maincategories" element={<MainCategories />} />
+        <Route path="/subcategory" element={<SubCategory />} />
 
 
         {/* Protected Routes */}
@@ -77,6 +79,9 @@ const AppRoutes = () => {
         <Route path="/slidebar" element={<Slidebar/>} />
 
 
+        {/* Category Routes */}
+
+
        {/* Payment Routes */}
         <Route path="/checkout" element={<Checkout />} />
         <Route path='/Payment-success' element={<PaymentSuccess/>}/>
@@ -87,6 +92,8 @@ const AppRoutes = () => {
         
         <Route path="/footer" element={<Footer/>} />
 
+
+        <Route path="/userprofile" element={<UserProfile />} />
       </Routes>
     </Router>
   );
