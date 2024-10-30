@@ -1,13 +1,41 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState , useEffect} from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import expandArrow from '../../../../src/assets/images/expandArrow.png';
 import contractArrow from '../../../../src/assets/images/contractArrow.png';
 
 function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
+    const location = useLocation();
     const [openMenu, setOpenMenu] = useState({});
-    const [activeLink, setActiveLink] = useState('');  // State to track active link
+    const [activeLink, setActiveLink] = useState('');  
 
+    useEffect(() => {
+        // Set activeLink and breadcrumb based on current path
+        const path = location.pathname;
+        if (path === '/my-account') {
+            setActiveLink('myaccount');
+            onBreadcrumbChange('Lansuwa > My Account');
+        } else if (path === '/notifications') {
+            setActiveLink('notifications');
+            onBreadcrumbChange('Lansuwa > Notifications');
+        } else if (path === '/watchlist') {
+            setActiveLink('watchlist');
+            onBreadcrumbChange('Lansuwa > Watchlist');
+        } else if (path === '/mybids') {
+            setActiveLink('mybids');
+            onBreadcrumbChange('Lansuwa > My Bids');  
+        } else if (path === '/myorders') {
+            setActiveLink('myorders');
+            onBreadcrumbChange('Lansuwa > My Orders');
+        } else if (path.startsWith('/sellers/listing')) {
+            setActiveLink('listing');
+            onBreadcrumbChange('Lansuwa > Sellers > Listing');
+        } else if (path.startsWith('/sellers/products')) {
+            setActiveLink('products');
+            onBreadcrumbChange('Lansuwa > Sellers > Products');
+        }
+    }, [location.pathname, onBreadcrumbChange]);
+    
     const toggleMenu = (menuName) => {
         setOpenMenu((prevOpenMenu) => ({
             ...prevOpenMenu,
@@ -17,11 +45,11 @@ function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
 
     const handleBreadcrumbChange = (breadcrumb, linkName) => {
         onBreadcrumbChange(breadcrumb);
-        setActiveLink(linkName);  // Set the clicked link as active
+        setActiveLink(linkName);  
     };
 
     return (
-        <div className={`2xl:pl-6 w-1/3 md:w-1/6 h-full bg-[#FDFAFF] text-gray-600 border-r border-solid border-neutral-200 shadow-md md:block ${isSidebarVisible ? 'block' : 'hidden'}`}>
+        <div className={`fixed mt-[116px] 2xl:pl-6 w-1/3 md:w-1/6 h-screen bg-[#FDFAFF] text-gray-800 border-r border-solid border-neutral-200 shadow-md md:block ${isSidebarVisible ? 'block' : 'hidden'}`}>
             <ul className="">
                 <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'myaccount' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
                     <span className='text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm'>

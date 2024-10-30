@@ -19,6 +19,20 @@ import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 import Watchlist from './pages/Watchlist/Watchlist';
+import Subcategory from './pages/Category_list/Subcategory';
+
+import AuctionDetails from './pages/Auction_Details/AuctionDetails';
+
+import AuctionList from './pages/Auction/AuctionList';
+import AuctionCreate from './pages/Auction/AuctionCreate';
+import Auction from './pages/Auction/Auction';
+
+import Footer from './pages/Footer/Footer';
+
+import Checkout from './pages/Payment/Checkout';
+import PaymentSuccess from './pages/Payment/PaymentSuccess';
+import Transactions from './pages/Payment/Transactions';
+
 
 import UserProfile from './pages/Slidebar/UserProfile/UserProfile'; 
 
@@ -50,7 +64,10 @@ const AppRoutes = () => {
 
         <Route path="/watchlist" element={<Watchlist />} />
 
-        
+        <Route path="/auctionlist" element={<AuctionList />} />
+        <Route path="/auctioncreate" element={<AuctionCreate />} />
+        <Route path="/auction" element={<Auction />} />
+
 
         {/* Protected Routes */}
 
@@ -62,12 +79,25 @@ const AppRoutes = () => {
 
         <Route path="/slidebar" element={<Slidebar/>} />
 
+
         {/* Category Routes */}
         <Route path="/categorylist" element={<Category />} />
         <Route path="/categoryproduct" element={<Categoryproduct />} />
         <Route path="/subcategory" element={<Subcategory />} />
         <Route path="/updatecategory" element={<Updatecategory />} />
         <Route path="/delectcategory" element={<Delectcategory />} />
+
+
+       {/* Payment Routes */}
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path='/Payment-success' element={<PaymentSuccess/>}/>
+        <Route path="/Transactions" element={<Transactions />} />
+
+        <Route path="/auctiondetails" element={<AuctionDetails/>} />
+
+        
+        <Route path="/footer" element={<Footer/>} />
+
 
         <Route path="/userprofile" element={<UserProfile />} />
       </Routes>

@@ -3,17 +3,17 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import approval from '../../../assets/images/approval.png';
 import axiosInstance from '../../../utils/axiosInstance';
 
-const IncreaseBid = ({ bid, onClose, newBid }) => {
+const IncreaseBid = ({ bid, onClose, auctionId }) => {
   const [bidAmount, setBidAmount] = useState('');
   const [bidCount, setBidCount] = useState(0);
   const [error, setError] = useState('');
   const [isIMaxBidder, setIAmMaxBidder] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
 
   const handleInputChange = (e) => {
     const value = e.target.value;
-    console.log('Input value:', value); // Check what the input value is
+    console.log('Input value:', value); 
     if (/^\d*$/.test(value)) {
       setBidAmount(value);
     }
@@ -35,65 +35,62 @@ const IncreaseBid = ({ bid, onClose, newBid }) => {
 
           // console.log('Bid count:', response.data);
 
-          setBidCount(response.data); // Assuming response.data returns the count directly
-          setError(''); // Clear previous errors
+          setBidCount(response.data); 
+          setError(''); 
         } catch (err) {
           console.error('Error fetching bid count:', err);
-          setError('Failed to fetch bid count'); // Set an error message to display
+          setError('Failed to fetch bid count'); 
         }
       }
     };
 
     fetchBidCount();
-  }, [bid.auctionId]); // Runs when bid.auctionId changes
+  }, [bid.auctionId]); 
 
+
+  
 
   const handleIncreaseBid = async () => {
-    console.log('Current Bid Amount:', bidAmount);
-    console.log('Minimum Bid Amount:', minBidAmount);
-
-    if (parseInt(bidAmount) < minBidAmount) {
-      setError(`Your bid must be at least Rs. ${minBidAmount}`);
-      return;
-    }
-    
-    try {
-
-      console.log(bidAmount);
-
-       axiosInstance.put(`/api/Bid/UpdateBid`, {
-        bidId: bid.bidId,
-        bidAmount: bidAmount,
-
-      });
-      setError('');
-      onClose(); // Close the modal
-
-      // Redirect to My Bids page
-      navigate('/mybids'); // Change the path as per your routing
-    } catch (err) {
-      console.error('Error increasing bid:', err);
-      setError('Failed to increase bid');
+    if (bidAmount) {
+      if (parseInt(bidAmount) < minBidAmount) {
+        setError(`Your bid must be at least Rs. ${minBidAmount}`);
+        return;
+      }
+      try {
+        const response = await axiosInstance.post(`/api/Bid/CreateBid/${bid.auctionId}`, {
+          auctionId:bid.auctionId,
+          bidAmount: parseInt(bidAmount, 10),
+          timeStamp: new Date(),
+        });
+        onPlaceBid(auctionId, bidAmount); 
+        setBidAmount(response.data.bidAmount);
+        navigate('/mybids');
+        window.location.reload();
+        console.log(bidAmount); 
+      } catch (error) {
+        setError("Error placing bid");
+      }
+      onClose();
     }
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* Modal background (gray overlay) */}
+  
       <div className="fixed inset-0 bg-gray-200 opacity-90" onClick={onClose}></div>
 
-      {/* Modal content */}
+     
       <div className="relative z-10 max-w-sm p-4 bg-white shadow-lg sm:p-7 rounded-2xl w-fit">
-        {/* Modal Header */}
+       
         <div className='border-b border-solid border-neutral-200'>
 
 
         { isIMaxBidder && 
           <div className='flex items-center border-[#44BF00] mb-2 border-solid border-2 p-2 rounded-lg'>
-          {/* Image */}
+      
           <img className='w-8 h-8 mr-2 sm:w-10 sm:h-10' src={approval} alt="approval" />
 
-          {/* Text */}
+ 
           <p className='text-[10px] sm:text-[13px] text-[#44BF00] font-semibold'>
             You are the highest bidder on this item. Hope you win it!
           </p>
@@ -107,13 +104,13 @@ const IncreaseBid = ({ bid, onClose, newBid }) => {
 
         <p className='my-2 text-[10px] sm:text-[13px]'>{bidCount} bid(s) | Time left : <span className='text-red-600'>{bid.timeLeft}</span></p>
         <p className='mb-2 text-[10px] sm:text-[13px]'>Current highest bid : <span className='font-bold text-[11px] sm:text-[14px]'>Rs. {bid.highestBidAmount.toFixed(2)}</span></p>
-        <p className='mb-2 text-[10px] sm:text-[13px]'>Shipping : <span className=''>Rs. {bid.shippingFee.toFixed(2)}</span></p>
+        <p className='mb-2 text-[10px] sm:text-[13px]'>Shipping : <span className=''>{bid.shippingFee === 0 ? 'Free Shipping' : `Rs. ${bid.shippingFee.toFixed(2)}`}</span></p>
 
         <div className='p-2 my-1 rounded-lg bg-[#C8C8C8]'>
 
           <p className='text-[8px] sm:text-[11px] text-gray-700'>Your max bid : Rs. {bid.bidAmount.toFixed(2)}</p>
 
-          {/* Increase Bid Input */}
+
           <div className="flex">
             <div className='flex w-full h-fit'>
               <input
@@ -135,7 +132,7 @@ const IncreaseBid = ({ bid, onClose, newBid }) => {
 
 
 
-        {/* Close Button */}
+
         <div className='flex justify-end mt-1'>
           <button className="text-[11px] sm:text-[14px] text-[#480C7B] hover:text-purple-500" onClick={onClose}>
             Close
