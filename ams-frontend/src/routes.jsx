@@ -20,6 +20,14 @@ import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 import Watchlist from './pages/Watchlist/Watchlist';
 
+import UserProfile from './pages/Slidebar/UserProfile/UserProfile'; 
+
+
+import Category from './pages/Category_list/Category';
+import Categoryproduct from './pages/Category_list/CategoryProduct';
+import Subcategory from './pages/Category_list/Subcategory';
+import Updatecategory from './pages/Category_list/UpdateCategory';
+import Delectcategory from './pages/Category_list/DelectCategory';
 
 const AppRoutes = () => {
   return (
@@ -54,9 +62,14 @@ const AppRoutes = () => {
 
         <Route path="/slidebar" element={<Slidebar/>} />
 
-       
-        
+        {/* Category Routes */}
+        <Route path="/categorylist" element={<Category />} />
+        <Route path="/categoryproduct" element={<Categoryproduct />} />
+        <Route path="/subcategory" element={<Subcategory />} />
+        <Route path="/updatecategory" element={<Updatecategory />} />
+        <Route path="/delectcategory" element={<Delectcategory />} />
 
+        <Route path="/userprofile" element={<UserProfile />} />
       </Routes>
     </Router>
   );

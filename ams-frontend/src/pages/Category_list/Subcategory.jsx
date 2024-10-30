@@ -32,6 +32,7 @@ import rectangle14 from '../../../src/assets/images/Rectangle 269 (13).png';
 import rectangle15 from '../../../src/assets/images/Rectangle 269 (14).png';
 
 
+
 function Subcategory() {
   return (
     <React.Fragment>
@@ -43,6 +44,8 @@ function Subcategory() {
     <h1 className='my-10 ml-12 text-2xl text-black' >Computer,Office & Education</h1>
     <hr className='-mt-4 font-thin text-black'/>
     <div className='card rows' >
+     
+      
         <img  className='ml-8 mt-7' src={Elipse1} alt="Elips1"/>
         <h2 className='mt-4 ml-24'>Bag</h2>
 
@@ -62,7 +65,7 @@ function Subcategory() {
         <h2 className='mt-3 ml-[1016px]'>DLY Gaming Computer</h2>
     </div>
 <div className='card rows2'>
-<img  className='mt-8 mb-6 ml-8 ' src={Elipse7} alt="Elips7"/>
+<img  className='mb-6 ml-8 ' src={Elipse7} alt="Elips7"/>
         <h2 className='ml-24 mt-7'>Keyboard</h2>
 
         <img className='ml-56 -mt-52' src={Elipse8} alt="Elips8"/>
@@ -96,7 +99,7 @@ function Subcategory() {
 <h1 className='ml-12 -mt-5 font-bold '>200000</h1>
 <h2 className='-mt-6 text-sm ml-28'>.48</h2>
 <h1 className='ml-4 text-red-500 '>7d:4h:18m</h1>
-<h2 class='ml-24 text-sm -mt-6'>more</h2>
+<h2 className='ml-24 -mt-6 text-sm'>more</h2>
 </div>
 
 <div className='-mt-[353px] ml-60'>
@@ -108,7 +111,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>450000</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>7d:4h:18m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 
@@ -121,7 +124,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>850</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>6d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 
@@ -134,7 +137,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>1500</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>6d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 
@@ -147,7 +150,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>5500</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>7d:4h:18m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 </div>
@@ -163,7 +166,7 @@ function Subcategory() {
 <h1 className='ml-12 -mt-5 font-bold '>200000</h1>
 <h2 className='-mt-6 text-sm ml-28'>.48</h2>
 <h1 className='ml-4 text-red-500 '>8d:4h:28m</h1>
-<h2 class='ml-24 text-sm -mt-6'>more</h2>
+<h2 className='ml-24 -mt-6 text-sm'>more</h2>
 </div>
 
 <div className='-mt-[353px] ml-60'>
@@ -175,7 +178,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>4000</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>8d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 
@@ -188,7 +191,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>250</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>8d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 
@@ -201,7 +204,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>85000</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>8d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 
@@ -214,7 +217,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>1200</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>6d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 </div>
@@ -229,7 +232,7 @@ function Subcategory() {
 <h1 className='ml-12 -mt-5 font-bold '>150000</h1>
 <h2 className='-mt-6 text-sm ml-28'>.48</h2>
 <h1 className='ml-4 text-red-500 '>8d:4h:28m</h1>
-<h2 class='ml-24 text-sm -mt-6'>more</h2>
+<h2 className='ml-24 -mt-6 text-sm'>more</h2>
 </div>
 
 <div className='-mt-[353px] ml-60'>
@@ -241,7 +244,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>30000</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>8d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 
@@ -254,7 +257,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>5000</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>8d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 
@@ -267,7 +270,7 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>2500</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>8d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
 
 </div>
 
@@ -280,7 +283,8 @@ function Subcategory() {
 <h1 className='ml-16 -mt-5 font-bold '>2500</h1>
 <h2 className='ml-32 -mt-6 text-sm'>.48</h2>
 <h1 className='ml-10 text-red-500 '>8d:4h:28m</h1>
-<h2 class='ml-32 text-sm -mt-6'>more</h2>
+<h2 className='ml-32 -mt-6 text-sm'>more</h2>
+
 
 </div>
 </div>

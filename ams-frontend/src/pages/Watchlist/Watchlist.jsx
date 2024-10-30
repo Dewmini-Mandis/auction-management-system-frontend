@@ -56,7 +56,8 @@ function Watchlist() {
       <img className='-mt-16 ml-[420px]' src={Line51} alt="Line51"/>
       <p className='ml-[455px] -mt-16 text-sm'>2 bits</p>
       <div>
-      <p className='ml-[455px] -mt-1 text-sm'>End in</p>
+      <p className='ml-[455px] -mt-1 text-sm'>End
+         in</p>
       <p className='text-red-500 ml-[496px] -mt-5 text-sm'>6m 49s</p>
       </div>
       <p className='ml-[455px] text-sm'>Thursday ,01:42AM</p>
