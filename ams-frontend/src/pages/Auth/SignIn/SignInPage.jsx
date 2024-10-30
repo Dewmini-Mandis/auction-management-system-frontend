@@ -26,6 +26,10 @@ const SignInPage = () => {
     try {
       const response = await axiosInstance.post('/api/Auth/Login', { email, password });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('isAuth', true);
+      localStorage.setItem('role', response.data.role);
+      localStorage.setItem('firstName', response.data.firstName);
+      localStorage.setItem('lastName', response.data.lastName);
 
       // Show a success toast
       toast.success('Login successful!');

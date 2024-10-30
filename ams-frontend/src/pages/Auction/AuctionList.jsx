@@ -51,34 +51,34 @@ function AuctionList() {
                         <HeaderSeller toggleSidebarVisibility={toggleSidebarVisibility} isSidebarVisible={isSidebarVisible} breadcrumb={breadcrumb} />
 
                         <div className="flex-grow p-4 text-black border border-solid border-neutral-200">
-                            <div className='pb-20 bg-purple-100 ' >
+                            <div className='bg-purple-100 h-dvh' >
 
                                 <h2 className='pt-10 pl-10 ml-20 text-3xl font-bold'>All Products</h2>
 
 
-                                <div className='p-10 '>
+                                <div className='grid p-10'>
 
                                     {/* Show all actions using a tailwind table auctions usestate use a map */}
-                                    <table className="min-w-full divide-y divide-neutral-200">
+                                    <table className="min-w-full border divide-y shadow-md divide-neutral-200 ">
                                         <thead className="bg-neutral-50">
                                             <tr>
-                                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
+                                                <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase text-neutral-500">
                                                     Product Name
                                                 </th>
-                                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
+                                                <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase text-neutral-500">
                                                     Description
                                                 </th>
-                                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
+                                                <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase text-neutral-500">
                                                     Starting Bid
                                                 </th>
-                                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
+                                                <th scope="col" className="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase text-neutral-500">
                                                     End Time
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody className="bg-white divide-y divide-neutral-200">
                                             {auctions.map((auction) => (
-                                                <tr key={auction.auctionId} className="hover:bg-gray-100 cursor-pointer" onClick={() => navigate(`/auction?auctionid=${auction.auctionId}`)}>
+                                                <tr key={auction.auctionId} className="cursor-pointer hover:bg-gray-100" onClick={() => navigate(`/auction?auctionid=${auction.auctionId}`)}>
                                                     <td className="px-6 py-4 whitespace-nowrap">
                                                         <div className="text-sm font-medium text-neutral-900">{auction.product?.name}</div>
                                                     </td>
