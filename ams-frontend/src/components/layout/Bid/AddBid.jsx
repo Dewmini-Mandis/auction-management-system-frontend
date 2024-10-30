@@ -38,6 +38,7 @@ const AddBid = ({ auctionId, onPlaceBid, onClose }) => {
     const response =  axiosInstance.get(`/api/auctions/GetAuctionById`, {
       params: { auctionId }
     });
+    let intervalId;
     if (auctionDetails?.endTime) {
         setTimeLeft(calculateTimeLeft(auctionDetails.endTime));
      
@@ -92,7 +93,7 @@ const AddBid = ({ auctionId, onPlaceBid, onClose }) => {
         console.log(response.data); 
         onPlaceBid(auctionId, bidAmount); 
         setBidAmount(''); 
-        navigate('/mybids');
+       navigate('/mybids');
         window.location.reload(); 
       } catch (error) {
         console.error("Error placing bid:", error);
