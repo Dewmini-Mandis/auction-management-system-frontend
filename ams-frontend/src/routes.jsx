@@ -19,9 +19,9 @@ import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 import Watchlist from './pages/Watchlist/Watchlist';
-import Subcategory from './pages/Category_list/Subcategory';
 
 import AuctionDetails from './pages/Auction_Details/AuctionDetails';
+
 
 import AuctionList from './pages/Auction/AuctionList';
 import AuctionCreate from './pages/Auction/AuctionCreate';
