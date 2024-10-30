@@ -154,7 +154,7 @@ useEffect(() => {
         </div>
 
         <p className='my-2 text-[13px]'>{bidCount} bid(s) | Time Left : <span className='text-red-600'>{timeLeft}</span></p>
-        <p className='mb-2 text-[13px]'>Current Highest Bid : <span className='font-bold text-[14px]' >Rs. {highestBidAmount}.00</span></p>
+        <p className='mb-2 text-[13px]'>Current Highest Bid : <span className='font-bold text-[14px]' >Rs. {highestBidAmount}</span></p>
         <p className='mb-2 text-[13px]'>Shipping : {auctionDetails?.product?.shippingfee === 0 ? 'Free Shipping' : `Rs. ${auctionDetails?.product?.shippingfee.toFixed(2)}`}</p>
 
 
