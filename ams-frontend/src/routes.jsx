@@ -32,9 +32,15 @@ import Footer from './pages/Footer/Footer';
 import Checkout from './pages/Payment/Checkout';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
 import Transactions from './pages/Payment/Transactions';
- import MainCategories from './pages/Categories/MainCatrgories/MainCategories';
 
+
+ import MainCategories from './pages/Categories/MainCatrgories/MainCategories';
  import SubCategory from './pages/Categories/SubCategory/SubCategory';
+ import Category from './pages/Category_list/Category';
+ import DeleteCategory from './pages/Category_list/DelectCategory';
+ import Subcategory from './pages/Category_list/Subcategory';
+ import UpdateCategory from './pages/Category_list/UpdateCategory';
+ import CategoryProduct from './pages/Category_list/CategoryProduct';
 
 import UserProfile from './pages/Slidebar/UserProfile/UserProfile'; 
 
@@ -66,6 +72,12 @@ const AppRoutes = () => {
 
         <Route path="/maincategories" element={<MainCategories />} />
         <Route path="/subcategory" element={<SubCategory />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/deletecategory" element={<DeleteCategory />} />
+        <Route path="/sub-category" element={<Subcategory />} />
+        <Route path="/updatecategory" element={<UpdateCategory />} />
+        <Route path="/categoryproduct" element={<CategoryProduct />} />
+
 
 
         {/* Protected Routes */}
@@ -76,7 +88,7 @@ const AppRoutes = () => {
 
         <Route path="/notification" element={<Notification/>} />
 
-        <Route path="/slidebar" element={<Slidebar/>} />
+       
 
 
         {/* Category Routes */}
