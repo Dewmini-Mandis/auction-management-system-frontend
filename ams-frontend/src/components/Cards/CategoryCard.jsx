@@ -18,8 +18,10 @@ const CategoryCard = ({ category }) => {
 
     return (
         <div key={categoryId} className="p-4 rounded-lg cursor-pointer" onClick={handleClick}>
-            <img src={categoryImageUrl} alt="Category" className="w-full rounded-full" />
-            <h1 className="text-center text-xl font-semibold mt-4">{category.name}</h1>
+            <div className="w-full h-[160px] flex justify-center">            
+                <img src={categoryImageUrl} alt="Category" className="w-[160px] h-[160px] rounded-full object-cover" />
+            </div>
+            <h1 className="text-center text-xl font-semibold mt-4 overflow-hidden text-ellipsis">{category.name}</h1>
         </div>
     );
 };

@@ -66,7 +66,7 @@ function SubCategory() {
 
 
                 {imageUrl !== "undefined" && ( 
-                    <img src={categoryImageUrl} alt="carousel" />
+                    <img src={categoryImageUrl} alt="" className="w-full object-cover"/>
                 )}
 
 

@@ -9,14 +9,6 @@ import Footer from '../../components/layout/Footer/Footer';
 import AddBid from '../../components/layout/Bid/AddBid';
 
 
-import rectangle122 from '../../assets/images/Rectangle 122.png';
-import rectangle123 from '../../assets/images/Rectangle 123.png';
-import rectangle124 from '../../assets/images/Rectangle 124.png';
-import rectangle125 from '../../assets/images/Rectangle 125.png';
-import rectangle126 from '../../assets/images/Rectangle 126.png';
-import rectangle127 from '../../assets/images/Rectangle 127.png';
-
-
 const AuctionDetails = () => {
 
   const location = useLocation();
@@ -70,6 +62,11 @@ const AuctionDetails = () => {
   }, [auctionId]);
 
 
+  const categoryImageUrl =
+  auction?.product?.imageUrls?.[0]
+      ? import.meta.env.VITE_BASE_URL + auction?.product?.imageUrls?.[0]
+      : "https://via.placeholder.com/150"; // Fallback image URL
+
 
 
   return (
@@ -91,17 +88,11 @@ const AuctionDetails = () => {
           {/* Left section: Product images */}
           <div className="md:w-1/2">
             <img
-              src={rectangle122}
+              src={categoryImageUrl}
               alt="Rectangle 122"
               className="object-cover w-full h-60 "
             />
-            <div className="flex mt-2 space-x-2">
-              <img src={rectangle123} alt="Rectangle123" className="object-cover w-16 h-16 " />
-              <img src={rectangle124} alt="Rectangle124" className="object-cover w-16 h-16 " />
-              <img src={rectangle125} alt="Rectangle125" className="object-cover w-16 h-16 " />
-              <img src={rectangle126} alt="Rectangle126" className="object-cover w-16 h-16 " />
-              <img src={rectangle127} alt="Rectangle127" className="object-cover w-16 h-16 " />
-            </div>
+                
           </div>
 
 
