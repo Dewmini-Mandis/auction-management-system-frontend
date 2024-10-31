@@ -6,7 +6,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
  function PaymentSuccess() {
   const navigate = useNavigate();
 
-  const [Amount, setAmount] = useState(null);  // New state for bid amount
+  const [Amount, setAmount] = useState('');  // New state for bid amount
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [paymentDetails, setPaymentDetails] = useState(null); // Store payment details
   
@@ -39,26 +39,6 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
     navigate('./pages/HomePage'); 
   };
 
-
-  const sendPaymentDetailsToBackend = async (referenceNumber,  amount, paymentMethod, paymentDate) => {
-    try {
-      const response = await axios.post('https://localhost:7010/api/Payment/RecordPayment', {
-        referenceNumber,
-        amount,
-        paymentMethod,
-        paymentDate,
-      }, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      console.log('Payment recorded:', response.data);
-    } catch (error) {
-      console.error('Error sending payment details to backend:', error);
-    }
-  };
-
-
   
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
@@ -78,7 +58,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
                 id="amount"
                 name="amount"
                 value={Amount}
-                required
+                readOnly
                 className="mt-1 p-1 w-1/2  border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
             />
         </div>
@@ -90,7 +70,10 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
             <PayPalButtons
               style={{ layout: "vertical", color: "silver", shape: "pill", label: "pay"}}
               createOrder={(data, actions) => {
-
+                if (!Amount) {
+                  setError("Amount is missing or invalid.");
+                  return Promise.reject();
+                } 
                 return actions.order.create({
                   purchase_units: [
                     {
@@ -107,17 +90,13 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
                   const details = await actions.order.capture();
                   setPaymentSuccess(true);
                   setPaymentDetails(details); 
-    
+                  
     
                   // Log transaction details
                   console.log("Transaction Details:", details);
     
-                   // Send payment details to backend
-                   const paymentDate = new Date().toISOString(); // Get the current date
-                   const paymentMethod = details.payment_source?.name || "PayPal";
- 
-                   await sendPaymentDetailsToBackend(details.id, payerName, details.purchase_units[0].amount.value, paymentMethod, paymentDate);
-                 } catch (error) {
+                  
+                } catch (error) {
                   console.error("Error capturing payment", error);
                   alert("Error processing payment.");
                 }
@@ -134,7 +113,6 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
           <p><strong>Transaction ID:</strong> {paymentDetails.id}</p>
           <p><strong>Payer Name:</strong> {paymentDetails.payer.name.given_name} {paymentDetails.payer.name.surname}</p>
           <p><strong>Amount:</strong> ${paymentDetails.purchase_units[0].amount.value}</p>
-          <p><strong>Payment Date:</strong> {new Date().toLocaleString()}</p> 
           <p><strong>Payment Method:</strong> {paymentDetails.payment_source?.name || "Paypal"}</p> 
         </div>
       )}
