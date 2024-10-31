@@ -101,39 +101,17 @@ function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
                         </Link>
                     </span>
                 </li>
-                <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'sellers' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`} >
-                    <div
-                        onClick={() => toggleMenu('sellers')}
-                        className="flex justify-between cursor-pointer"
-                    >
-                        <span className={`text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm ${openMenu['sellers'] ? 'font-medium , text-[#480C7B]' : ''} ` }  >
+                <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'sellers' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
+                    <span className='text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm'>
+                        <Link
+                            to='/myaccountseller'
+                            onClick={() => handleBreadcrumbChange('Lansuwa > Sellers', 'sellers')}
+                        >
                             Sellers
-                        </span>
-                        <span>
-                            <img src={openMenu['sellers'] ? expandArrow : contractArrow} alt="toggle" className='w-3 h-3 lg:w-4 lg:h-4' />
-                        </span>
-                    </div>
-                    {openMenu['sellers'] && (
-                        <ul className="pl-4 text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm text-gray-600 ">
-                            <li className={`py-2 ${activeLink === 'listing' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
-                                <Link
-                                    to='/sellers/listing'
-                                    onClick={() => handleBreadcrumbChange('Lansuwa > Sellers > Listing', 'listing')}
-                                >
-                                    Listing
-                                </Link>
-                            </li>
-                            <li className={`py-2 ${activeLink === 'products' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
-                                <Link
-                                    to='/sellers/products'
-                                    onClick={() => handleBreadcrumbChange('Lansuwa > Sellers > Products', 'products')}
-                                >
-                                    Products
-                                </Link>
-                            </li>
-                        </ul>
-                    )}
+                        </Link>
+                    </span>
                 </li>
+                
             </ul>
         </div>
     );
