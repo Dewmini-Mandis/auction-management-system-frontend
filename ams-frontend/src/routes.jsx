@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Import your components
 import HomePage from './pages/Home/HomePage';
 import NotFound from './components/NotFound/NotFound';
-import Notification from './pages/Notification/Notification';
 import Slidebar from './pages/Slidebar/Slidebar';
 
 import ProductList from './pages/Product/ProductList/ProductList';
@@ -42,7 +41,10 @@ import Transactions from './pages/Payment/Transactions';
  import UpdateCategory from './pages/Category_list/UpdateCategory';
  import CategoryProduct from './pages/Category_list/CategoryProduct';
 
-import UserProfile from './pages/Slidebar/UserProfile/UserProfile'; 
+import UserProfile from './pages/UserProfile/UserProfile';
+import Notification from './pages/Notification/Notification';
+
+
 
 
 const AppRoutes = () => {
@@ -79,14 +81,13 @@ const AppRoutes = () => {
         <Route path="/categoryproduct" element={<CategoryProduct />} />
 
 
-
         {/* Protected Routes */}
 
 
         {/* Catch-All Route */}
-        <Route path="*" element={<NotFound />} />
 
-        <Route path="/notification" element={<Notification/>} />
+
+ 
 
        
 
@@ -105,7 +106,11 @@ const AppRoutes = () => {
         <Route path="/footer" element={<Footer/>} />
 
 
-        <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/my-account" element={<UserProfile />} />
+        <Route path="/notifications" element={<Notification />} />
+
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
