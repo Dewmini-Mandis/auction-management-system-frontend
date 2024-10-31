@@ -6,6 +6,7 @@ import axiosInstance from '../../utils/axiosInstance';
 import AddBid from '../../components/layout/Bid/AddBid';
 import { useNavigate } from 'react-router-dom';
 import CountdownTimer from '../../components/Cards/CountdownTimer';
+import { toast } from 'sonner';
 
 function Watchlist() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);  
@@ -70,16 +71,23 @@ function Watchlist() {
     fetchWatchlist();
   }, []);
 
-  const handleDeleteWatchlistItem = async (auctionId) => {
-
+  const handleDeleteWatchlistItem = async (watchAuctionId) => {
     const confirmDelete = window.confirm("Are you sure you want to remove this item from your watchlist?");
+    
     if (confirmDelete) {
       try {
+        // Send delete request to the server
         await axiosInstance.delete(`/api/watchlist/DeleteWatchlistItem?watchAuctionId=${watchAuctionId}`);
-        setWatchlist((prevWatchlist) => prevWatchlist.filter((item) => item.watchAuctionId?.watchAuctionId !== watchAuctionId));
+        
+        // Update the watchlist state to remove the deleted item
+        setWatchlist(prevWatchlist => 
+          prevWatchlist.filter(item => item.watchAuctionId !== watchAuctionId)
+        );
+        
         console.log(`Deleted item with auctionId: ${watchAuctionId}`);
-      }
-      catch (error) {
+        toast.success('Watchlist item was deleted successfully!');
+
+      } catch (error) {
         console.error('Error deleting watchlist item:', error);
       }
     }
@@ -151,7 +159,7 @@ function Watchlist() {
                   <div className='col-start-4 mr-4'>
                     <button className='w-44 h-8 mt-3 text-[14px] bg-[#480C7B] text-white font-normal rounded-xl' onClick={() => handleOpenModal(item.auction?.auctionId)}>Place Bid</button>
                     <button className='w-44 h-8 mt-3 text-[14px] bg-white text-[#480C7B] border border-[#480C7B] font-normal rounded-xl'>View Similar Items</button>
-                    <button className='w-44 h-8 mt-3 text-[14px] bg-white text-[#480C7B] border border-[#480C7B] font-normal rounded-xl' onClick={() => handleDeleteWatchlistItem(item.auction?.auctionId)}>Remove</button>
+                    <button className='w-44 h-8 mt-3 text-[14px] bg-white text-[#480C7B] border border-[#480C7B] font-normal rounded-xl' onClick={() => handleDeleteWatchlistItem(item.watchAuctionId)}>Remove</button>
                   </div>
                 </div>
               );
