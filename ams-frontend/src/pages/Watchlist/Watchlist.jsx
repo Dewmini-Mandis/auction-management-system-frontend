@@ -75,9 +75,9 @@ function Watchlist() {
     const confirmDelete = window.confirm("Are you sure you want to remove this item from your watchlist?");
     if (confirmDelete) {
       try {
-        await axiosInstance.delete(`/api/watchlist/deleteWatchlistItem/${auctionId}`);
-        setWatchlist((prevWatchlist) => prevWatchlist.filter((item) => item.auction?.auctionId !== auctionId));
-        console.log(`Deleted item with auctionId: ${auctionId}`);
+        await axiosInstance.delete(`/api/watchlist/DeleteWatchlistItem?watchAuctionId=${watchAuctionId}`);
+        setWatchlist((prevWatchlist) => prevWatchlist.filter((item) => item.watchAuctionId?.watchAuctionId !== watchAuctionId));
+        console.log(`Deleted item with auctionId: ${watchAuctionId}`);
       }
       catch (error) {
         console.error('Error deleting watchlist item:', error);

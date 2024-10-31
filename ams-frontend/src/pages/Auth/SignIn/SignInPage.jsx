@@ -71,8 +71,8 @@ const SignInPage = () => {
           <div>
             <img src={logo} alt="svad" />
             <h1 className="text-3xl font-bold text-slate-900 font-light mt-6 text-[35px]" style={{ fontFamily: 'Poppins, sans-serif' }}>Sign In</h1>
-            <p className="text-slate-600 mt-3">Use your Lansuwa.lk account to sign in</p>
-            <p className="text-slate-600 mt-10">Sign in via social</p>
+            <p className="mt-3 text-slate-600">Use your Lansuwa.lk account to sign in</p>
+            <p className="mt-10 text-slate-600">Sign in via social</p>
             <div className="flex mt-2 ms-[-2px]">
               <img src={google} alt="google" className="pe-3" />
               <img src={facebook} alt="facebook" className="pe-3" />
