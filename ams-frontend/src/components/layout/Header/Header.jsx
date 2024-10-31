@@ -58,6 +58,10 @@ function Header() {
                     <TopBarIcons imgsrc={cart} alt="Cart" linkurl="/cart" />
                     <TopBarIcons imgsrc={wishlist} alt="Watchlist" linkurl="/wishlist" />
                     <TopBarIcons imgsrc={notification} alt="Notification" linkurl="/notification" />
+<<<<<<< Updated upstream
+=======
+                    <TopBarIcons imgsrc={profile} alt="Profile" linkurl="/my-account" />
+>>>>>>> Stashed changes
 
                     <MobileViewIcons className='w-7 h-7 xxs:w-9 xss:h-9' imgsrc={menu} alt="Menu" linkurl="/menu" />
 
