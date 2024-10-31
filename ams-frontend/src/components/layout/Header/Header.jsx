@@ -58,7 +58,9 @@ function Header() {
                     <TopBarIcons imgsrc={flag} alt="Ship to" linkurl="/country" />
                     <TopBarIcons imgsrc={wishlist} alt="Watchlist" linkurl="/watchlist" />
                     <TopBarIcons imgsrc={notification} alt="Notification" linkurl="/notification" />
-                    <TopBarIcons imgsrc={profile} alt="Profile" linkurl="/profile" />
+
+                    <TopBarIcons imgsrc={profile} alt="Profile" linkurl="/my-account" />
+
 
                     <MobileViewIcons className='w-7 h-7 xxs:w-9 xss:h-9' imgsrc={menu} alt="Menu" linkurl="/menu" />
 

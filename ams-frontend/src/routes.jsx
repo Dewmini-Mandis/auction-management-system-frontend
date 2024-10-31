@@ -42,7 +42,9 @@ import Transactions from './pages/Payment/Transactions';
  import UpdateCategory from './pages/Category_list/UpdateCategory';
  import CategoryProduct from './pages/Category_list/CategoryProduct';
 
-import UserProfile from './pages/Slidebar/UserProfile/UserProfile'; 
+import UserProfile from './pages/UserProfile/UserProfile';
+
+
 
 
 const AppRoutes = () => {
@@ -78,15 +80,15 @@ const AppRoutes = () => {
         <Route path="/updatecategory" element={<UpdateCategory />} />
         <Route path="/categoryproduct" element={<CategoryProduct />} />
 
-
+        <Route path="/notification" element={<Notification/>} />
 
         {/* Protected Routes */}
 
 
         {/* Catch-All Route */}
-        <Route path="*" element={<NotFound />} />
 
-        <Route path="/notification" element={<Notification/>} />
+
+ 
 
        
 
@@ -105,7 +107,10 @@ const AppRoutes = () => {
         <Route path="/footer" element={<Footer/>} />
 
 
-        <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/my-account" element={<UserProfile />} />
+
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
