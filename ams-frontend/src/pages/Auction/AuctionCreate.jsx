@@ -3,10 +3,13 @@ import { useState, useEffect } from "react";
 import SideBar from "../../components/layout/SideBar/SideBar";
 import HeaderSeller from "../../components/layout/HeaderSeller/HeaderSeller";
 import axiosInstance from "../../utils/axiosInstance";
-
+import { toast } from 'sonner';
+import Loading from "../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
 function AuctionCreate() {
-
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState("Lansuwa > ");
 
@@ -57,6 +60,9 @@ function AuctionCreate() {
 
     // Upload images to the server
     const handleUpload = async (productId) => {
+
+        setLoading(true);
+
         if (selectedImages.length === 0) {
             alert("Please select images to upload.");
             return;
@@ -85,13 +91,17 @@ function AuctionCreate() {
                 }
             );
 
-            alert("Images uploaded successfully!");
+            toast.success("Auction successfully listed!");
             setUploadProgress(0);
             setSelectedImages([]); // Clear selected images after successful upload
-            console.log(response.data.imageUrls); // Handle or display uploaded image URLs if needed
+            setLoading(false);   
+            navigate("/auctionlist");         
         } catch (error) {
             console.error("Error uploading images:", error);
             alert("Error uploading images. Please try again.");
+            setUploadProgress(0);
+            setLoading(false);
+            toast.error("Error uploading images. Please try again.");
         }
     };
 
@@ -390,23 +400,24 @@ function AuctionCreate() {
 
 
 
-                                <div className="grid grid-cols-6 gap-2 p-10 mt-10 grid-rows-9 bg-slate-50 rounded-xl">
+                                <div className="grid grid-cols-6 grid-rows-6 gap-2 p-10 mt-10 bg-slate-50 rounded-xl">
                                     <div className="col-span-6"><h2 className="text-2xl ">Auction</h2></div>
 
 
-                                    <div className="col-span-3 row-start-2"><span>Starting bid </span></div>
-                                    <div className="col-span-3 col-start-1 row-start-3">
+                                    
+                                    <div className="col-span-3 col-start-1 row-start-2">
+                                    <span>Starting bid </span>
                                         <input type="text" className="w-full mt-2 border-4 rounded bg-slate-50" onChange={(e) => setStartingBid(e.target.value)} />
                                     </div>
 
 
 
-                                    <div className="col-start-1 row-start-4"><span>Starting Time</span></div>
-                                    <div className="col-span-3 col-start-1 row-start-5">
+                                    <div className="col-span-3 col-start-1 row-start-3">
                                         {/* date time pecker to use setStartTime  */}
+                                        <div>Starting Time</div>
                                         <input
                                             type="datetime-local"
-                                            className="w-full mt-2 border-4 rounded bg-slate-50"
+                                            className="w-full border-4 rounded bg-slate-50"
                                             onChange={(e) => {
                                                 // Convert the input to UTC format
                                                 const localDateTime = new Date(e.target.value);
@@ -419,7 +430,7 @@ function AuctionCreate() {
 
 
 
-                                    <div className="col-span-3 col-start-1 row-start-7">
+                                    <div className="col-span-3 col-start-1 row-start-4">
                                         {/* input for geting shiiping fee */}
                                         <div>End time</div>
                                         <input
@@ -434,7 +445,7 @@ function AuctionCreate() {
                                         />
                                     </div>
 
-                                    <div className="col-span-3 col-start-1 row-start-8 mt-8">
+                                    <div className="col-span-3 col-start-1 row-start-5 ">
                                         {/* input for geting shiiping fee */}
                                         <div>Scheduled Time</div>
                                         <input
@@ -449,7 +460,7 @@ function AuctionCreate() {
                                         />
                                     </div>
 
-                                    <div className="col-span-3 col-start-1 row-start-9 my-4">
+                                    <div className="col-span-3 col-start-1 row-start-6 my-2">
 
                                         <div className="flex items-center">
                                             <input
@@ -460,16 +471,18 @@ function AuctionCreate() {
                                         </div>
                                     </div>
 
-                                    <div className="col-span-3 col-start-4 row-start-2"><span>Recurrent Pattern</span></div>
-                                    <div className="col-span-3 col-start-4 row-start-3">
+                                    
+                                    <div className="col-span-3 col-start-4 row-start-2">
                                         {/* select option to select  Recurrent Pattern*/}
-                                        <select className="w-full h-10 border-4 rounded bg-slate-50" onChange={(e) => setRecurrentPattern(e.target.value)}>
+                                        <div>Recurrent Pattern</div>
+                                        <select className="w-full mt-2 border-4 rounded bg-slate-50" onChange={(e) => setRecurrentPattern(e.target.value)}>
                                             <option value="Daily">Daily</option>
                                             <option value="Weekly">Weekly</option>
                                             <option value="Monthly">Monthly</option>
                                         </select>
 
                                     </div>
+
 
 
 

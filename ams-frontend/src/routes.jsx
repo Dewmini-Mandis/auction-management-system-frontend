@@ -34,14 +34,16 @@ import PaymentSuccess from './pages/Payment/PaymentSuccess';
 import Transactions from './pages/Payment/Transactions';
 
 
+ import MainCategories from './pages/Categories/MainCatrgories/MainCategories';
+ import SubCategory from './pages/Categories/SubCategory/SubCategory';
+ import Category from './pages/Category_list/Category';
+ import DeleteCategory from './pages/Category_list/DelectCategory';
+ import Subcategory from './pages/Category_list/Subcategory';
+ import UpdateCategory from './pages/Category_list/UpdateCategory';
+ import CategoryProduct from './pages/Category_list/CategoryProduct';
+
 import UserProfile from './pages/Slidebar/UserProfile/UserProfile'; 
 
-
-import Category from './pages/Category_list/Category';
-import Categoryproduct from './pages/Category_list/CategoryProduct';
-import Subcategory from './pages/Category_list/Subcategory';
-import Updatecategory from './pages/Category_list/UpdateCategory';
-import Delectcategory from './pages/Category_list/DelectCategory';
 
 const AppRoutes = () => {
   return (
@@ -68,6 +70,15 @@ const AppRoutes = () => {
         <Route path="/auctioncreate" element={<AuctionCreate />} />
         <Route path="/auction" element={<Auction />} />
 
+        <Route path="/maincategories" element={<MainCategories />} />
+        <Route path="/subcategory" element={<SubCategory />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/deletecategory" element={<DeleteCategory />} />
+        <Route path="/sub-category" element={<Subcategory />} />
+        <Route path="/updatecategory" element={<UpdateCategory />} />
+        <Route path="/categoryproduct" element={<CategoryProduct />} />
+
+
 
         {/* Protected Routes */}
 
@@ -77,15 +88,10 @@ const AppRoutes = () => {
 
         <Route path="/notification" element={<Notification/>} />
 
-        <Route path="/slidebar" element={<Slidebar/>} />
+       
 
 
         {/* Category Routes */}
-        <Route path="/categorylist" element={<Category />} />
-        <Route path="/categoryproduct" element={<Categoryproduct />} />
-        <Route path="/subcategory" element={<Subcategory />} />
-        <Route path="/updatecategory" element={<Updatecategory />} />
-        <Route path="/delectcategory" element={<Delectcategory />} />
 
 
        {/* Payment Routes */}

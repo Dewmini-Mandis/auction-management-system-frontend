@@ -13,6 +13,23 @@ import menu from '../../../assets/images/menu.png';
 
 
 function Header() {
+
+    // logout function here
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('isAuth');
+        localStorage.removeItem('role');
+        localStorage.removeItem('firstName');
+        localStorage.removeItem('lastName');
+        
+
+        // redirect to Signin page
+        window.location.href = '/signin';
+
+    }
+
+
+
     return (
 
         <div className='bg-[#FDFAFF] w-full h-fit grid md:grid-rows-3 fixed z-50'>
@@ -20,11 +37,23 @@ function Header() {
             <div className='grid w-full col-start-3 row-start-1 md:col-start-1 md:row-span-1 h-fit md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5 2xl:grid-col-6 lg:py-1'>
 
                 <div className='hidden col-start-1 ms-6 w-fit h-fit md:inline-block '>
-                    <TopBarLinks linktext='Sign in' linkurl="/signin" /><span className='text-[#480C7B] text-[10px] md:text-[16px]'>&nbsp; or &nbsp;</span>
-                    <TopBarLinks linktext='Sign up' linkurl="/signup" />
+
+                    {localStorage.getItem('isAuth') ? (
+                        <div className=' text-sm flex items-center justify-center'>
+                            <p>Welcome ! {localStorage.getItem('firstName')} {localStorage.getItem('lastName')}</p>
+                            <button onClick={handleLogout} className='ms-3 underline'>Logout</button>
+                        </div>
+                    ) : (
+                        <>
+                            <TopBarLinks linktext='Sign in' linkurl="/signin" />
+                            <span className='text-[10px] md:text-[16px]'>&nbsp; or &nbsp;</span>
+                            <TopBarLinks linktext='Sign up' linkurl="/signup" />
+                        </>
+                    )}
+
                 </div>
 
-                <div className ="flex w-auto col-start-3 h-fit md:ms-2 lg:col-start-4 xl:ms-5 xl:col-start-5 2xl:col-start-6">
+                <div className="flex w-auto col-start-3 h-fit md:ms-2 lg:col-start-4 xl:ms-5 xl:col-start-5 2xl:col-start-6">
                     <TopBarIcons imgsrc={flag} alt="Ship to" linkurl="/country" />
                     <TopBarIcons imgsrc={cart} alt="Cart" linkurl="/cart" />
                     <TopBarIcons imgsrc={wishlist} alt="Watchlist" linkurl="/wishlist" />
