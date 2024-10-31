@@ -5,6 +5,7 @@ import IncreaseBid from '../../components/layout/Bid/IncreaseBid';
 import Breadcrumb from '../../components/layout/Breadcrumb/Breadcrumb';
 import deleteicon from '../../assets/images/deleteicon.png';
 import axiosInstance from '../../utils/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 function MyBids() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);    
@@ -12,7 +13,8 @@ function MyBids() {
   const [isIncreaseModalOpen, setIsIncreaseModalOpen] = useState(false);  
   const [bids, setBids] = useState([]); 
   const [selectedBid, setSelectedBid] = useState(null); 
-
+  const navigate = useNavigate();
+  
   // Toggle sidebar visibility
   const toggleSidebarVisibility = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -68,6 +70,9 @@ function MyBids() {
     return [...wonBids, ...activeBids, ...endedBids];
   };
 
+  const handleMakePayment = () => {
+    navigate('/checkout',);
+  };
 
 
   return (
@@ -138,7 +143,7 @@ function MyBids() {
 
                           <button
                             className="px-4 py-1 text-white bg-orange-600 font-medium rounded hover:bg-orange-500 text-[12px]"
-                            onClick={() => handleMakePayment(bid.bidId)}  // Add a function to handle payment
+                            onClick={() => handleMakePayment()}  // Add a function to handle payment
                           >
                             Make Payment
                           </button>

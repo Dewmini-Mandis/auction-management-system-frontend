@@ -41,13 +41,11 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
   
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-      <div className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Payment Summary</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100">
+      <div className="max-w-md p-6 mx-auto mt-6 bg-white rounded-lg shadow-lg">
+        <h2 className="mb-4 text-2xl font-semibold text-center">Payment Summary</h2>
         
-        {/* Error message */}
-        {error && <p className="text-red-500">{error}</p>}
-
+        
         {/* Success message */}
         {successMessage && <p className="text-green-500">{successMessage}</p>}
 
@@ -59,7 +57,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
                 name="amount"
                 value={Amount}
                 readOnly
-                className="mt-1 p-1 w-1/2  border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+                className="w-1/2 p-1 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
             />
         </div>
 
@@ -108,8 +106,8 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
             />
           </div>
           {paymentSuccess && paymentDetails && (
-        <div className="mt-6 p-4 bg-purple-200 rounded">
-          <h2 className="text-xl font-semibold text-center text-purple-950 mb-2">Payment Successful!</h2>
+        <div className="p-4 mt-6 bg-purple-200 rounded">
+          <h2 className="mb-2 text-xl font-semibold text-center text-purple-950">Payment Successful!</h2>
           <p><strong>Transaction ID:</strong> {paymentDetails.id}</p>
           <p><strong>Payer Name:</strong> {paymentDetails.payer.name.given_name} {paymentDetails.payer.name.surname}</p>
           <p><strong>Amount:</strong> ${paymentDetails.purchase_units[0].amount.value}</p>
@@ -122,7 +120,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
         <button
         type="button"
         onClick={handleViewOrders}
-        className=" mr-16 px-4 py-2 text-lg underline bg-white text-purple-800 rounded-md hover:text-purple-700 focus:outline-none"
+        className="px-4 py-2 mr-16 text-lg text-purple-800 underline bg-white rounded-md  hover:text-purple-700 focus:outline-none"
       >
         View Orders
       </button>
@@ -130,7 +128,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
       <button
         type="submit"
          onClick={handleOkClick}
-         className="ml-auto px-6 py-1 bg-purple-950 text-white rounded-md hover:bg-purple-900 focus:outline-none"
+         className="px-6 py-1 ml-auto text-white rounded-md bg-purple-950 hover:bg-purple-900 focus:outline-none"
          >
         Ok
       </button>

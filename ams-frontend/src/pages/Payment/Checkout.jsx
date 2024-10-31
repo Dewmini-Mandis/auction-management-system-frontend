@@ -17,7 +17,7 @@ function Checkout() {
 
      
       const handleCheckout = () => {
-        navigate('./Payment/PaymentSuccess'); 
+        navigate('/payment-success'); 
       };
 
         
@@ -32,7 +32,6 @@ function Checkout() {
             setShippingData(response.data);  // Store the API response in state
           }).catch((error) => {
               setError("Failed to fetch shipping details.");
-              console.error(error);
           });
       }, []);
 
@@ -58,10 +57,8 @@ function Checkout() {
                 }
             });
             setSuccessMessage('Shipping details updated successfully!');
-            console.log("Shipping details updated:", response.data);
         } catch (error) {
             setError("Failed to update Shipping details.");
-            console.error(error);
         }
     };
 
@@ -69,13 +66,12 @@ function Checkout() {
 
       return (
 
-        //<div className="max-w-md mx-auto p-4 bg-white  rounded-lg">
+        //<div className="max-w-md p-4 mx-auto bg-white rounded-lg">
 
-        <div className="w-full max-w-lg mx-auto mt-8 p-4 bg-white shadow-md rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4 text-center">Shipping Details</h2>
+        <div className="w-full max-w-lg p-10 mx-auto mt-20 bg-white rounded-lg shadow-md">
+          <h2 className="mb-4 text-2xl font-semibold text-center">Shipping Details</h2>
           
-          {/* Error message */}
-          {error && <p className="text-red-500">{error}</p>}
+      
 
           {/* Success message */}
           {successMessage && <p className="text-green-500">{successMessage}</p>}
@@ -90,20 +86,20 @@ function Checkout() {
               <input
                 type="text"
                 name="name"
-                value={ShippingData.name}
+                value="Kasun Thiwanka"
                 onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full p-2 mt-1 border border-gray-300 rounded"
                 
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 value:text-gray-200">
               <label className="block text-sm font-medium text-gray-700">Address</label>
               <input
                 type="text"
                 name="address"
-                value={ShippingData.address}
+                value="55/A, Galle Road, Colombo 03"
                 onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full p-2 mt-1 border border-gray-300 rounded"
                 
               />
             </div>
@@ -112,9 +108,9 @@ function Checkout() {
               <input
                 type="text"
                 name="contactNumber"
-                value={ShippingData.contactNumber}
+                value="0771234567"
                 onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
+                className="w-full p-2 mt-1 border border-gray-300 rounded"
                 
               />
             </div>
@@ -125,14 +121,14 @@ function Checkout() {
                 <button
                   type="button"
                   onClick={handleSave}
-                  className="w-1/4 px-4 py-0 mr-3 text-lg bg-white text-purple-800 rounded-md border border-purple-800 hover:text-purple-700 focus:outline-none">
+                  className="w-1/4 px-4 py-0 mr-3 text-lg text-purple-800 bg-white border border-purple-800 rounded-md hover:text-purple-700 focus:outline-none">
                   Update
                 </button>
 
                 <button
                   type="button"
                   onClick={handleCheckout}
-                  className="w-1/4 px-4 py-0 ml-3 text-lg bg-purple-950 text-white rounded-md hover:bg-purple-900 focus:outline-none">
+                  className="w-1/4 px-4 py-0 ml-3 text-lg text-white rounded-md bg-purple-950 hover:bg-purple-900 focus:outline-none">
                   Checkout
                 </button>
              </div>
