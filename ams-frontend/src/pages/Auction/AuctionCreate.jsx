@@ -3,10 +3,13 @@ import { useState, useEffect } from "react";
 import SideBar from "../../components/layout/SideBar/SideBar";
 import HeaderSeller from "../../components/layout/HeaderSeller/HeaderSeller";
 import axiosInstance from "../../utils/axiosInstance";
-
+import { toast } from 'sonner';
+import Loading from "../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
 function AuctionCreate() {
-
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState("Lansuwa > ");
 
@@ -57,6 +60,9 @@ function AuctionCreate() {
 
     // Upload images to the server
     const handleUpload = async (productId) => {
+
+        setLoading(true);
+
         if (selectedImages.length === 0) {
             alert("Please select images to upload.");
             return;
@@ -85,13 +91,17 @@ function AuctionCreate() {
                 }
             );
 
-            alert("Images uploaded successfully!");
+            toast.success("Auction successfully listed!");
             setUploadProgress(0);
             setSelectedImages([]); // Clear selected images after successful upload
-            console.log(response.data.imageUrls); // Handle or display uploaded image URLs if needed
+            setLoading(false);   
+            navigate("/auctionlist");         
         } catch (error) {
             console.error("Error uploading images:", error);
             alert("Error uploading images. Please try again.");
+            setUploadProgress(0);
+            setLoading(false);
+            toast.error("Error uploading images. Please try again.");
         }
     };
 

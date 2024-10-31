@@ -21,7 +21,11 @@ function Header() {
         localStorage.removeItem('role');
         localStorage.removeItem('firstName');
         localStorage.removeItem('lastName');
-        window.location.reload();
+        
+
+        // redirect to Signin page
+        window.location.href = '/signin';
+
     }
 
 
