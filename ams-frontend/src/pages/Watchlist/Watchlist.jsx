@@ -47,8 +47,8 @@ function Watchlist() {
         const watchlistWithBidData = await Promise.all(
           response.data.map(async (item) => {
             const [highestBidResponse, bidCountResponse] = await Promise.all([
-              axiosInstance.get(`/api/Bid/GetHighestBid/${item.auction?.auctionId}`),
-              axiosInstance.get(`/api/Bid/GetBidCount/${item.auction?.auctionId}`)
+              axiosInstance.get(`/api/Bid/GetHighestBid?${item.auction?.auctionId}`),
+              axiosInstance.get(`/api/Bid/GetBidCount?${item.auction?.auctionId}`)
             ]);
 
             return {
