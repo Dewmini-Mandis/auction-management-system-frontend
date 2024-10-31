@@ -16,6 +16,8 @@ function Auction() {
 
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');
+    const [isAdmin, setIsAdmin] = useState(true);
+
 
 
     const toggleSidebarVisibility = () => {
@@ -49,6 +51,9 @@ function Auction() {
     };
 
     useEffect(() => {
+
+        setIsAdmin(localStorage.getItem('role') === 'admin');
+
         axiosInstance.get(`/api/Auctions/GetAuctionById?auctionId=${auctionId}`)
             .then((res) => {
                 const data = res.data;
@@ -85,6 +90,7 @@ function Auction() {
                                     value={formData.startingBid || ''}
                                     onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded"
+                                    disabled
                                 />
                             </div>
 
@@ -97,6 +103,7 @@ function Auction() {
                                     dateFormat="Pp"
                                     className="w-full px-3 py-2 border border-gray-300 rounded"
                                     placeholderText="Select start time"
+                                    disabled
                                 />
                             </div>
 
@@ -109,6 +116,7 @@ function Auction() {
                                     dateFormat="Pp"
                                     className="w-full px-3 py-2 border border-gray-300 rounded"
                                     placeholderText="Select end time"
+                                    disabled
                                 />
                             </div>
 
@@ -120,6 +128,7 @@ function Auction() {
                                     value={formData.product?.name || ''}
                                     onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded"
+                                    disabled
                                 />
                             </div>
 
@@ -131,6 +140,7 @@ function Auction() {
                                     value={formData.shippingMethod || ''}
                                     onChange={handleChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded"
+                                    disabled
                                 />
                             </div>
 
@@ -141,6 +151,7 @@ function Auction() {
                                     checked={formData.acceptReturn || false}
                                     onChange={handleChange}
                                     className="mr-2"
+                                    disabled
                                 />
                                 <label className="text-gray-700 text-sm">Accept Returns</label>
                             </div>
@@ -148,17 +159,20 @@ function Auction() {
                             <button
                                 type="submit"
                                 className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                                style={{ visibility: 'hidden' }}
                             >
                                 Submit
                             </button>
 
-                            {/* delete button */}
-                            <button
-                                type="button"
-                                className="float-end bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 ml-2"
-                            >
-                                Delete
-                            </button>
+                            {isAdmin && (
+                                <button
+                                    type="button"
+                                    className="float-end bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 ml-2"
+                                >
+                                    Delete
+                                </button>
+                            )}
+
                         </form>
                     </div>
                 </div>

@@ -28,6 +28,7 @@ const AuctionDetails = () => {
   const [relatedAuctions, setRelatedAuctions] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setLoading(true);
     // First request to get auction details
     axiosInstance.get(`/api/Auctions/GetAuctionById?auctionId=${auctionId}`)
