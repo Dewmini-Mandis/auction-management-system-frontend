@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import AddBid from '../../components/layout/Bid/AddBid';
 
+
 const WishList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate(); // Initialize navigate
