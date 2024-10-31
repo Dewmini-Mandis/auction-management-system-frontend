@@ -22,19 +22,18 @@ const Transactions = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {transactions.length > 0 && 
-                        transactions.map((transaction) => (
-                            <tr key={transaction.transactionId} className="border-b hover:bg-gray-100">
-                                <td className="px-6 py-4 text-sm text-left">{transaction.transactionId}</td>
-                                <td className="px-6 py-4 text-sm text-left">{transaction.itemName}</td>
-                                <td className="px-6 py-4 text-sm text-left">${transaction.totalAmount.toFixed(2)}</td>
-                                <td className="px-6 py-4 text-sm text-left">{new Date(transaction.paymentDate).toLocaleDateString()}</td>
-                                <td className="px-6 py-4 text-sm text-left">{transaction.paymentMethod}</td>
-                                <td className="px-6 py-4 text-sm text-left">{transaction.status}</td>
+                    
+                            <tr  className="border-b hover:bg-gray-100">
+                                <td className="px-6 py-4 text-sm text-center">1</td>
+                                <td className="px-6 py-4 text-sm text-center">Acer Laptop  </td>
+                                <td className="px-6 py-4 text-sm text-center">Rs. 300 000</td>
+                                <td className="px-6 py-4 text-sm text-center">2024-10-29 14:45:00</td>
+                                <td className="px-6 py-4 text-sm text-center">PayPal</td>
+                                <td className="px-6 py-4 text-sm text-left">Completed</td>
                             </tr>
-                        ))
-                    }
-    </tbody>
+                        
+                   
+                   </tbody>
                 </table>
             </div>
         </div>
