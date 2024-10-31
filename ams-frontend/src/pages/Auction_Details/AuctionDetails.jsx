@@ -2,11 +2,12 @@ import React, { act, useEffect, useState } from 'react';
 import Header from '../../components/layout/Header/Header';
 import CountdownTimer from '../../components/Cards/CountdownTimer';
 import axiosInstance from '../../utils/axiosInstance';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import AuctionCard from '../../components/Cards/AucrionCard';
 import Loading from '../../components/Loading/Loading';
 import Footer from '../../components/layout/Footer/Footer';
 import AddBid from '../../components/layout/Bid/AddBid';
+import { toast } from 'sonner';
 
 
 const AuctionDetails = () => {
@@ -16,6 +17,7 @@ const AuctionDetails = () => {
   const [loading, setLoading] = useState(false);
   const[isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAuctionId, setSelectedAuctionId] = useState(null);
+
 
 
   // useState to store the auction data
@@ -61,6 +63,21 @@ const AuctionDetails = () => {
 
   }, [auctionId]);
 
+
+
+  const handleAddToWatchlist = () => {
+    axiosInstance.post('/api/watchlist/AddWatchAuction', {
+      auctionId: auction.auctionId,
+      
+    })
+    .then(response => {
+      toast.success('Auction Added to watchlist successfully!');
+    })
+    .catch(error => {
+      console.error('Error adding to watchlist:', error);
+      toast.error(error.response.data);
+    });
+  };
 
   const categoryImageUrl =
   auction?.product?.imageUrls?.[0]
@@ -143,7 +160,7 @@ const AuctionDetails = () => {
                 {/* Action Buttons */}
                 <div className="flex mt-6 mb-8 space-x-4">
                   <button className="px-6 py-2 bg-[#480C7B]  text-white rounded-lg hover:bg-[#480C7B]" onClick={() => handleOpenModal(auction.auctionId)}>Place bid</button>
-                  <button className="px-6 py-2 text-gray-700 bg-white border-black rounded-lg hover:bg-gray-300">Add to watchlist</button>
+                  <button className="px-6 py-2 text-gray-700 bg-white border-black rounded-lg hover:bg-gray-300" onClick={handleAddToWatchlist} >Add to watchlist</button>
                 </div>
               </span>
             </div>
