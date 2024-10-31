@@ -57,7 +57,7 @@ function Header() {
                 <div className="flex w-auto col-start-3 h-fit md:ms-2 lg:col-start-4 xl:ms-5 xl:col-start-5 2xl:col-start-6">
                     <TopBarIcons imgsrc={flag} alt="Ship to" linkurl="/country" />
                     <TopBarIcons imgsrc={wishlist} alt="Watchlist" linkurl="/watchlist" />
-                    <TopBarIcons imgsrc={notification} alt="Notification" linkurl="/notification" />
+                    <TopBarIcons imgsrc={notification} alt="Notification" linkurl="/notifications" />
 
                     <TopBarIcons imgsrc={profile} alt="Profile" linkurl="/my-account" />
 
