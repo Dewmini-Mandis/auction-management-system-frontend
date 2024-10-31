@@ -7,7 +7,7 @@ import xbox from '../../../assets/images/xbox.png';
 function HeaderSeller({isSidebarVisible , toggleSidebarVisibility , breadcrumb}) {
 
   return (
-    <div className={`w-full bg-[#FDFAFF] h-fit p-1 xxs:p-2 lg:p-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 grid ${isSidebarVisible ? 'grid-cols-1' : 'grid-cols-2'}`}>
+    <div className={`w-full bg-[#FDFAFF] h-fit p-2 xxs:p-2 lg:p-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 grid ${isSidebarVisible ? 'grid-cols-1' : 'grid-cols-2'}`}>
         <button type='button' className={`block col-start-1 row-start-1 md:hidden ${isSidebarVisible ? 'xxs:-ms-4' : 'ms-0'} ${isSidebarVisible ? '-ms-3' : 'ms-0'}`}>
             <img className='w-4 h-4 xxs:w-5 xxs:h-5' src={xbox} alt="Xbox"  onClick={toggleSidebarVisibility} />
       </button>

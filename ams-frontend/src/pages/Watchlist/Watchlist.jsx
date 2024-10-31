@@ -5,6 +5,7 @@ import Breadcrumb from '../../components/layout/Breadcrumb/Breadcrumb';
 import axiosInstance from '../../utils/axiosInstance';
 import AddBid from '../../components/layout/Bid/AddBid';
 import { useNavigate } from 'react-router-dom';
+import CountdownTimer from '../../components/Cards/CountdownTimer';
 
 function Watchlist() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);  
@@ -74,9 +75,9 @@ function Watchlist() {
     const confirmDelete = window.confirm("Are you sure you want to remove this item from your watchlist?");
     if (confirmDelete) {
       try {
-        await axiosInstance.delete(`/api/watchlist/deleteWatchlistItem/${auctionId}`);
-        setWatchlist((prevWatchlist) => prevWatchlist.filter((item) => item.auction?.auctionId !== auctionId));
-        console.log(`Deleted item with auctionId: ${auctionId}`);
+        await axiosInstance.delete(`/api/watchlist/DeleteWatchlistItem?watchAuctionId=${watchAuctionId}`);
+        setWatchlist((prevWatchlist) => prevWatchlist.filter((item) => item.watchAuctionId?.watchAuctionId !== watchAuctionId));
+        console.log(`Deleted item with auctionId: ${watchAuctionId}`);
       }
       catch (error) {
         console.error('Error deleting watchlist item:', error);
@@ -143,7 +144,7 @@ function Watchlist() {
                       </div>
                       <div className='col-start-2 pt-1 border-l border-solid ps-4 border-slate-300'>
                         <p className='text-[15px]'>{item.bidCount} bid(s)</p>
-                        <p className='text-[15px] mt-1'>Ends in <span className='font-medium text-red-500'>{item.timeLeft}</span></p>
+                        <p className='text-[15px] mt-1'><CountdownTimer endTime={item.auction?.endTime} /><span className='font-medium text-red-500'>{item.timeLeft}</span></p>
                       </div>
                     </div>
                   </div>
