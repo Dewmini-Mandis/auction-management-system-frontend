@@ -84,7 +84,7 @@ const AddBid = ({ auctionId, onPlaceBid, onClose }) => {
   }
       try {
         // Call backend API to submit the bid
-        const response = await axiosInstance.post(`/api/Bid/CreateBid/${auctionId}`, {
+        const response = await axiosInstance.post(`/api/Bid/CreateBid`, {
           auctionId,
           bidAmount: parseInt(bidAmount, 10), 
           timeStamp,

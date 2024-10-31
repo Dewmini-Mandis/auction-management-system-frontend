@@ -90,7 +90,7 @@ function MyBids() {
             className={`${isSidebarVisible ? 'w-1/4' : 'w-0'}`}
           />
 
-          <div className={`flex-col flex-grow bg-[#F5F0FA] h-fit pl-60 pr-8 pb-8 pt-40 ${isSidebarVisible ? 'w-3/4' : 'w-full'}`}>
+          <div className={`flex-col flex-grow bg-[#F5F0FA] h-full pl-60 pr-8 pb-8 pt-40 ${isSidebarVisible ? 'w-3/4' : 'w-full'}`}>
 
             <h1 className="flex justify-center mb-4 text-lg font-medium text-gray-800">My Bids</h1>
 

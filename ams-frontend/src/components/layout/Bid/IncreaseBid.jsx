@@ -57,7 +57,7 @@ const IncreaseBid = ({ bid, onClose, auctionId }) => {
         return;
       }
       try {
-        const response = await axiosInstance.post(`/api/Bid/CreateBid/${bid.auctionId}`, {
+        const response = await axiosInstance.post(`/api/Bid/CreateBid`, {
           auctionId:bid.auctionId,
           bidAmount: parseInt(bidAmount, 10),
           timeStamp: new Date(),
