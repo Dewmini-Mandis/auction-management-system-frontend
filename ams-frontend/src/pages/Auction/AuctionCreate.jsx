@@ -42,9 +42,9 @@ function AuctionCreate() {
     const [returnMethod, setReturnMethod] = useState("string");
 
     const [startingBid, setStartingBid] = useState(0.01);
-    const [startTime, setStartTime] = useState("2024-10-29T14:33:30.873Z");
+    const [startTime, setStartTime] = useState(new Date().toISOString());
     const [endTime, setEndTime] = useState("2024-10-29T14:33:30.873Z");
-    const [scheduledTime, setScheduledTime] = useState("2024-10-29T14:33:30.873Z");
+    const [scheduledTime, setScheduledTime] = useState(new Date().toISOString());
     const [isRecurring, setIsRecurring] = useState(true);
     const [recurrentPattern, setRecurrentPattern] = useState("string");
 
@@ -94,8 +94,8 @@ function AuctionCreate() {
             toast.success("Auction successfully listed!");
             setUploadProgress(0);
             setSelectedImages([]); // Clear selected images after successful upload
-            setLoading(false);   
-            navigate("/auctionlist");         
+            setLoading(false);
+            navigate("/auctionlist");
         } catch (error) {
             console.error("Error uploading images:", error);
             alert("Error uploading images. Please try again.");
@@ -107,8 +107,20 @@ function AuctionCreate() {
 
 
 
+    const getAllCategoryNames = (categories) => {
+        const flattened = [];
+
+        const traverse = (category) => {
+            flattened.push({ categoryId: category.categoryId, name: category.name });
+            category.subCategories.forEach(subCategory => traverse(subCategory));
+        };
+
+        categories.forEach(category => traverse(category));
+        return flattened;
+    };
 
 
+    const [allCategoryNames, setAllCategoryNames] = useState([]);
 
 
 
@@ -118,6 +130,7 @@ function AuctionCreate() {
     useEffect(() => {
         axiosInstance.get("/api/Category/GetAllCategoriesWithSubcategories").then((res) => {
             setCategories(res.data);
+            setAllCategoryNames(getAllCategoryNames(res.data));
         }).catch((err) => {
             console.log(err);
         });
@@ -199,7 +212,7 @@ function AuctionCreate() {
                                         <span>Category</span>
                                         {/* Using categories usestate bind categoryIds as values for a select option using a map*/}
                                         <select className="w-full mt-2 border-4 rounded bg-slate-50" onChange={(e) => setCategoryId(e.target.value)}>
-                                            {categories.map((category) => {
+                                            {allCategoryNames.map((category) => {
                                                 return (
                                                     <option key={category.categoryId} value={category.categoryId}>{category.name}</option>
                                                 );
@@ -404,9 +417,9 @@ function AuctionCreate() {
                                     <div className="col-span-6"><h2 className="text-2xl ">Auction</h2></div>
 
 
-                                    
+
                                     <div className="col-span-3 col-start-1 row-start-2">
-                                    <span>Starting bid </span>
+                                        <span>Starting bid </span>
                                         <input type="text" className="w-full mt-2 border-4 rounded bg-slate-50" onChange={(e) => setStartingBid(e.target.value)} />
                                     </div>
 
@@ -471,7 +484,7 @@ function AuctionCreate() {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div className="col-span-3 col-start-4 row-start-2">
                                         {/* select option to select  Recurrent Pattern*/}
                                         <div>Recurrent Pattern</div>
