@@ -22,10 +22,26 @@ const AuctionDetails = () => {
   const location = useLocation();
   const auctionId = location.state?.auctionId || '';
   const [loading, setLoading] = useState(false);
+  const[isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAuctionId, setSelectedAuctionId] = useState(null);
+
 
   // useState to store the auction data
   const [auction, setAuction] = useState({});
   const [relatedAuctions, setRelatedAuctions] = useState([]);
+
+  const handleOpenModal = (auctionId) => {
+    setSelectedAuctionId(auctionId); 
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handlePlaceBid = () => {
+    setIsModalOpen(false); 
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -71,7 +87,7 @@ const AuctionDetails = () => {
 
 
         {/* Main Content */}
-        <div className="flex px-3 py-2  flex-cols-2 md:flex-row">
+        <div className="flex px-3 py-2 flex-cols-2 md:flex-row">
           {/* Left section: Product images */}
           <div className="md:w-1/2">
             <img
@@ -135,7 +151,7 @@ const AuctionDetails = () => {
                 </div>
                 {/* Action Buttons */}
                 <div className="flex mt-6 mb-8 space-x-4">
-                  <button className="px-6 py-2 bg-[#480C7B]  text-white rounded-lg hover:bg-[#480C7B]">Place bid</button>
+                  <button className="px-6 py-2 bg-[#480C7B]  text-white rounded-lg hover:bg-[#480C7B]" onClick={() => handleOpenModal(auction.auctionId)}>Place bid</button>
                   <button className="px-6 py-2 text-gray-700 bg-white border-black rounded-lg hover:bg-gray-300">Add to watchlist</button>
                 </div>
               </span>
@@ -210,9 +226,14 @@ const AuctionDetails = () => {
         {/* Description */}
 
       </div>
-
-      <Footer />
-
+       {/* AddBid Modal */}
+      {isModalOpen && (
+        <AddBid 
+          onClose={handleCloseModal} 
+          auctionId={selectedAuctionId} 
+          onPlaceBid={handlePlaceBid} 
+        />
+      )}
     </React.Fragment>
   );
 };
