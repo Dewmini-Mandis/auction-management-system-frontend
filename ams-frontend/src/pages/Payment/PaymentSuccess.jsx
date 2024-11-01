@@ -37,7 +37,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
   // Navigate to the home page when "OK" is clicked
   const handleOkClick = () => {
     alert("Payment Successful!");
-    navigate('./pages/HomePage'); 
+    navigate('/'); 
   };
 
   
