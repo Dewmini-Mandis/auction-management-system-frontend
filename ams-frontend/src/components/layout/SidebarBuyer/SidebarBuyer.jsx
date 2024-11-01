@@ -15,6 +15,7 @@ function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
     useEffect(() => {
 
         setIsSeller(localStorage.getItem('role') === 'seller');
+        // setIsSeller(localStorage.getItem('role') === 'admin');
         setIsAdmin(localStorage.getItem('role') === 'admin');
 
         // Set activeLink and breadcrumb based on current path
@@ -109,12 +110,12 @@ function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
                     </span>
                 </li>
 
-                { isSeller && (
+                { (isSeller || isAdmin) && (
 
                 <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'sellers' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
                     <span className='text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm'>
                         <Link
-                            to='/myaccountseller'
+                            to='/auctioncreate'
                             onClick={() => handleBreadcrumbChange('Lansuwa > Sellers', 'sellers')}
                         >
 

@@ -4,9 +4,11 @@ import Breadcrumb from "../../components/layout/Breadcrumb/Breadcrumb";
 import SidebarBuyer from "../../components/layout/SidebarBuyer/SidebarBuyer";
 import axiosInstance from "../../utils/axiosInstance";
 import { toast } from 'sonner';
+import Loading from '../../components/Loading/Loading';
 
 function UserProfile() {
 
+    const [loading, setLoading] = useState(false);
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');
     const [isSeller, setIsSeller] = useState(false);
@@ -30,6 +32,8 @@ function UserProfile() {
     // Fetch initial data in useEffect
     useEffect(() => {
 
+        setLoading(true);
+
         setIsSeller(localStorage.getItem('role') === 'seller');
         console.log(localStorage.getItem('role'));
 
@@ -42,6 +46,8 @@ function UserProfile() {
             }
         };
         fetchData();
+
+        setLoading(false);
     }, []);
 
     // Handle form input changes
@@ -54,16 +60,20 @@ function UserProfile() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            setLoading(true);
             await axiosInstance.put('/api/UserProfile/UpdateUserProfile', formData); // Replace with actual endpoint
             toast.success('Account details updated successfully!');
+            setLoading(false);
         } catch (error) {
             console.error('Error submitting form:', error);
+            setLoading(false);
         }
     };
 
 
     const changeToSellerAccount = async (e) => {
 
+        setLoading(true);
         await axiosInstance.put('/api/Auth/ChangeUserRoleToSeller')
             .then((response) => {
                 if (response.status === 200) {
@@ -76,10 +86,12 @@ function UserProfile() {
                     toast.success('Please sign in again');
                     window.location.href = '/signin';
                     alert('Please sign in again');
+                    setLoading(false);
                 }
             })
             .catch((error) => {
                 toast.error("Error changing account");
+                setLoading(false);
             });
 
     }
@@ -88,6 +100,11 @@ function UserProfile() {
 
     return (
         <React.Fragment>
+
+            {loading && (
+                <Loading />
+            )}
+
 
             <Header
                 toggleSidebarVisibility={toggleSidebarVisibility}
