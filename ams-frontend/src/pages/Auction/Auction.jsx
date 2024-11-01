@@ -16,8 +16,7 @@ function Auction() {
 
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');
-    const [isAdmin, setIsAdmin] = useState(true);
-
+    const [isAdmin, setIsAdmin] = useState(false);
 
 
     const toggleSidebarVisibility = () => {
