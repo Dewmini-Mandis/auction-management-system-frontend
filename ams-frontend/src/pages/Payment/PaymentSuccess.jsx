@@ -36,6 +36,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
   // Navigate to the home page when "OK" is clicked
   const handleOkClick = () => {
+    alert("Payment Successful!");
     navigate('./pages/HomePage'); 
   };
 
@@ -120,7 +121,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
         <button
         type="button"
         onClick={handleViewOrders}
-        className="px-4 py-2 mr-16 text-lg text-purple-800 underline bg-white rounded-md  hover:text-purple-700 focus:outline-none"
+        className="px-4 py-2 mr-16 text-lg text-purple-800 underline bg-white rounded-md hover:text-purple-700 focus:outline-none"
       >
         View Orders
       </button>
