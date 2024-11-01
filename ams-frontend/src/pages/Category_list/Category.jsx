@@ -1,25 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeaderSeller from '../../components/layout/HeaderSeller/HeaderSeller';
 import SideBar from '../../components/layout/SideBar/SideBar';
-import axios from 'axios';
+import axiosInstance from '../../utils/axiosInstance';
+import Loading from '../../components/Loading/Loading';
+import { toast } from 'sonner';
+import { useNavigate } from "react-router-dom";
+
 
 function Category() {
+    const navigate = useNavigate();
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');
     const [categoryName, setCategoryName] = useState('');
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState(null);
+    const [categoryId, setCategoryId] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+
+
+
+    const [selectedImages, setSelectedImages] = useState([]);
+    const [uploadProgress, setUploadProgress] = useState(0);
+
+    // Handle file selection
+    const handleFileChange = (event) => {
+        setSelectedImages([...event.target.files]);
+    };
+
+    // Upload images to the server
+    const handleUpload = async (categoryId) => {
+
+        setLoading(true);
+
+        if (selectedImages.length === 0) {
+            alert("Please select images to upload.");
+            return;
+        }
+
+        const formData = new FormData();
+        selectedImages.forEach((image) => {
+            formData.append("logoFiles", image);
+        });
+
+        try {
+            console.log(categoryId);
+            const response = await axiosInstance.post(
+                `/api/categories/${categoryId}/logos`,
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                    onUploadProgress: (progressEvent) => {
+                        const percentCompleted = Math.round(
+                            (progressEvent.loaded * 100) / progressEvent.total
+                        );
+                        setUploadProgress(percentCompleted);
+                    },
+                }
+            );
+
+            toast.success("Category created successfully !");
+            setUploadProgress(0);
+            setSelectedImages([]); // Clear selected images after successful upload
+            setLoading(false);
+            navigate("/categoryproduct  ");
+        } catch (error) {
+            console.error("Error uploading images:", error);
+            alert("Error uploading images. Please try again.");
+            setUploadProgress(0);
+            setLoading(false);
+            toast.error("Error uploading images. Please try again.");
+        }
+    };
+
+
+
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.post('https://localhost:7010/api/Category/CreateCategory', { 
+        axiosInstance.post('/api/Category/CreateCategory', {
             name: categoryName,
             description: description,
-            parentCategoryId: null
-         })
+            parentCategoryId: categoryId
+        })
             .then((response) => {
                 console.log(response.data);
-                alert('Category created successfully');
+                handleUpload(response.data.categoryId);
             })
             .catch((error) => {
                 console.error(error);
@@ -35,9 +102,37 @@ function Category() {
         setBreadcrumb(newBreadcrumb);
     };
 
+    const getAllCategoryNames = (categories) => {
+        const flattened = [];
+
+        const traverse = (category) => {
+            flattened.push({ categoryId: category.categoryId, name: category.name });
+            category.subCategories.forEach(subCategory => traverse(subCategory));
+        };
+
+        categories.forEach(category => traverse(category));
+        return flattened;
+    };
+
+    const [allCategoryNames, setAllCategoryNames] = useState([]);
+
+    useEffect(() => {
+        axiosInstance.get("/api/Category/GetAllCategoriesWithSubcategories").then((res) => {
+            setAllCategoryNames(getAllCategoryNames(res.data));
+        }).catch((err) => {
+            console.log(err);
+        });
+
+    }, []);
+
+
+
     return (
         <div className='w-full h-screen parent-container'>
             <React.Fragment>
+                {loading && (
+                    <Loading />
+                )}
                 <div className="flex w-full h-full">
                     <SideBar isSidebarVisible={isSidebarVisible} onBreadcrumbChange={handleBreadcrumbChange} />
                     <div className={`flex flex-col md:w-5/6 bg-[#F5F0FA] ${isSidebarVisible ? 'w-3/4' : 'w-full'}`}>
@@ -61,20 +156,18 @@ function Category() {
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <div className='pb-5 mt-8'>
-                                                                <select className='float-left w-11/12 h-10 ml-10 -mt-24 border-2 rounded bg-slate-50'>
-                                                                    <option value="Option 1">Select Category</option>
-                                                                    <option value="Option 2">Real estate</option>
-                                                                    <option value="Option 3">Jewellery</option>
-                                                                    <option value="Option 4">Furniture</option>
-                                                                    <option value="Option 5">Art</option>
-                                                                    <option value="Option 6">Home & Garden</option>
-                                                                    <option value="Option 7">Electric</option>
-                                                                    <option value="Option 8">I phone</option>
-                                                                    <option value="Option 9">Books</option>
-                                                                    <option value="Option 10">Fashion</option>
-                                                                    <option value="Option 11">Toys</option>
-                                                                    <option value="Option 12">Music</option>
+
+                                                            <input type="text" className='w-full border-4 mt-[-1000px]' onChange={(e) => setCategoryName(e.target.value)} />
+
+                                                            <p>Select Parent Category if this is a subcategory</p>
+                                                            <div className='pb-5 mt-2 mb-16'>
+                                                                <select className="w-full mt-2 border-4 rounded bg-slate-50" onChange={(e) => setCategoryId(e.target.value)}>
+                                                                    {allCategoryNames.map((category) => {
+                                                                        return (
+                                                                            <option key={category.categoryId} value={category.categoryId}>{category.name}</option>
+                                                                        );
+                                                                    }
+                                                                    )}
                                                                 </select>
                                                             </div>
                                                             <label htmlFor="upload" className='float-left w-11/12 pl-10 mb-5 text-left -mt-14'>Images</label>
@@ -85,7 +178,20 @@ function Category() {
                                                                 <input id="upload" type="file" className="hidden p-5" />
                                                             </div>
                                                             <div className="relative float-left w-11/12 p-10 ml-10 -mt-3 border-2 rounded-lg bg-slate-50 min-h-40" id="dropzone">
-                                                                <input type="file" className="absolute inset-0 z-50 float-left w-full h-full opacity-0 min-h-56" onChange={(e) => setImage(e.target.value)} />
+
+
+                                                                <input
+                                                                    type="file"
+                                                                    multiple
+                                                                    accept="image/*"
+                                                                    onChange={handleFileChange}
+                                                                />
+                                                                {/* <button onClick={handleUpload}>Upload Images</button> */}
+                                                                {uploadProgress > 0 && <p>Uploading: {uploadProgress}%</p>}
+
+
+
+
                                                                 <div className="text-center">
                                                                     <img className="w-12 h-12 mx-auto" src="https://www.svgrepo.com/show/357902/image-upload.svg" alt="Upload icon" />
                                                                     <p className="mt-1 text-xs text-gray-500">Drag and drop images & videos</p>
