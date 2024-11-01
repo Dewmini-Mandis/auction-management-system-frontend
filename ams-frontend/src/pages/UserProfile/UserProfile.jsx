@@ -9,6 +9,7 @@ function UserProfile() {
 
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
     const [breadcrumb, setBreadcrumb] = useState('Lansuwa > ');
+    const [isSeller, setIsSeller] = useState(false);
     // Toggle sidebar visibility
     const toggleSidebarVisibility = () => {
         setIsSidebarVisible(!isSidebarVisible);
@@ -28,6 +29,10 @@ function UserProfile() {
 
     // Fetch initial data in useEffect
     useEffect(() => {
+
+        setIsSeller(localStorage.getItem('role') === 'seller');
+        console.log(localStorage.getItem('role'));
+
         const fetchData = async () => {
             try {
                 const response = await axiosInstance.get('/api/UserProfile/GetUserProfile'); // Replace with actual endpoint
@@ -57,11 +62,27 @@ function UserProfile() {
     };
 
 
+    const changeToSellerAccount = async (e) => {
 
+        await axiosInstance.put('/api/Auth/ChangeUserRoleToSeller')
+            .then((response) => {
+                if (response.status === 200) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('isAuth');
+                    localStorage.removeItem('role');
+                    localStorage.removeItem('firstName');
+                    localStorage.removeItem('lastName');
+                    toast.success(response.data);
+                    toast.success('Please sign in again');
+                    window.location.href = '/signin';
+                    alert('Please sign in again');
+                }
+            })
+            .catch((error) => {
+                toast.error("Error changing account");
+            });
 
-
-
-
+    }
 
 
 
@@ -139,6 +160,27 @@ function UserProfile() {
                                 onChange={handleChange}
                                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
                             />
+                        </div>
+
+                        {/* Button to change my account to seller account */}
+                        <div>
+                            <label htmlFor="address" className="block font-medium text-gray-700">Change to Seller Account</label>
+                            <div>
+                                {isSeller ? (
+                                    <p className="mt-2 text-green-500">You are already a seller</p>
+                                ) : (
+
+                                    <button
+                                        type="button"
+                                        onClick={changeToSellerAccount}
+                                        className="w-[100px]  mt-5 bg-[#480C7B] text-white py-2 rounded-md hover:bg-[#480C7B] transition-colors"
+                                    >
+                                        Change
+                                    </button>
+                                )}
+                            </div>
+
+
                         </div>
 
                         {/* Submit Button */}
