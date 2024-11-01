@@ -5,11 +5,18 @@ import expandArrow from '../../../../src/assets/images/expandArrow.png';
 import contractArrow from '../../../../src/assets/images/contractArrow.png';
 
 function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
+
+    const [isSeller, setIsSeller] = useState(false);
+    const [isAdmin , setIsAdmin] = useState(false);
     const location = useLocation();
     const [openMenu, setOpenMenu] = useState({});
     const [activeLink, setActiveLink] = useState('');  
 
     useEffect(() => {
+
+        setIsSeller(localStorage.getItem('role') === 'seller');
+        setIsAdmin(localStorage.getItem('role') === 'admin');
+
         // Set activeLink and breadcrumb based on current path
         const path = location.pathname;
         if (path === '/my-account') {
@@ -101,12 +108,23 @@ function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
                         </Link>
                     </span>
                 </li>
+<<<<<<< Updated upstream
                 <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'sellers' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`} >
                     <div
                         onClick={() => toggleMenu('sellers')}
                         className="flex justify-between cursor-pointer"
                     >
                         <span className={`text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm ${openMenu['sellers'] ? 'font-medium , text-[#480C7B]' : ''} ` }  >
+=======
+
+                { isSeller && (
+                <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'sellers' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
+                    <span className='text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm'>
+                        <Link
+                            to='/myaccountseller'
+                            onClick={() => handleBreadcrumbChange('Lansuwa > Sellers', 'sellers')}
+                        >
+>>>>>>> Stashed changes
                             Sellers
                         </span>
                         <span>
@@ -134,6 +152,24 @@ function SidebarBuyer({ isSidebarVisible, onBreadcrumbChange }) {
                         </ul>
                     )}
                 </li>
+<<<<<<< Updated upstream
+=======
+                )}
+
+                { isAdmin && (
+                <li className={`p-3 border-b border-solid xss:p-4 lg:px-6 xl:px-8 border-neutral-200 ${activeLink === 'admin' ? 'bg-[#480C7B] text-white' : 'hover:text-[#480C7B]'}`}>
+                    <span className='text-[10px] md:text-[12px] lg:text-[13px] xl:text-sm'>
+                        <Link
+                            to='/admin'
+                            onClick={() => handleBreadcrumbChange('Lansuwa > Admin', 'admin')}
+                        >
+                            Admin
+                        </Link>
+                    </span>
+                </li>
+                )}
+                
+>>>>>>> Stashed changes
             </ul>
         </div>
     );
