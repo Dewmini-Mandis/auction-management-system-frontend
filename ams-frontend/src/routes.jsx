@@ -43,7 +43,7 @@ import Transactions from './pages/Payment/Transactions';
 
 import UserProfile from './pages/UserProfile/UserProfile';
 import Notification from './pages/Notification/Notification';
-
+import MyAccountSeller from './pages/My_Account_Seller/MyAccountSeller';
 
 
 
@@ -107,6 +107,8 @@ const AppRoutes = () => {
 
 
         <Route path="/my-account" element={<UserProfile />} />
+        <Route path="/myaccountseller" element={<MyAccountSeller />} />
+
         <Route path="/notifications" element={<Notification />} />
 
 
